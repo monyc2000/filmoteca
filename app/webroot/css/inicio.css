@@ -1,0 +1,291 @@
+/* 
+    Document   : inicio
+    Created on : Dec 5, 2013, 6:01:42 PM
+    Author     : victor
+    Description:
+        Hoja de estilo para que afectan unicamente la pagina de inicio.
+*/
+
+.body:after,
+.col-sites-news:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.col-sites-news{
+    width: 66.66%;
+    float: left;
+}
+
+.row-sites,
+.row-news,
+.wrapper-billboard,
+.row-others{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float:left;
+}
+
+.wrapper-billboard{
+    width: 33.33%;
+    padding: 20px;
+}
+
+
+.row-sites,
+.row-news{
+    width: 100%;
+}
+
+.row-sites > h2,
+.row-sites > h2{
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    font-size: .8em;
+}
+
+.row-sites > h2{
+    background-color: #00A8B1;
+    color: white;
+}
+.row-news > h2{
+    background-color: #F9D77E;
+    color: black;
+}
+
+.row-sites .block,
+.row-news .block{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 45%;
+    float:left;
+}
+
+.row-sites .first-block,
+.row-news .first-block{
+    margin-right: 10%;
+}
+
+.row-news .block h2,
+.row-sites .block h2{
+    color:#EFBB36;
+    text-align: center;
+}
+
+.row-sites .block h3,
+.row-news .block h3{
+    color: white;
+    text-align: right;
+}
+
+.row-news .block h4,
+.row-sites .block h4{
+    color: #00A8B3;
+    text-align: center;
+}
+
+.row-sites .block p{
+    color: white;
+}
+
+.row-sites .block h2{
+    font-style: italic;
+}
+
+.muvac{
+    background-image: url('img/muvac.jpg');
+    background-size: 100%;
+}
+
+.cine-en-linea{
+    background-image: url('img/cine-en-linea.jpg');
+    background-size: 100%;
+}
+
+.noticias3{
+    background-image: url('img/noticias1.jpg');
+    background-size: 100%;
+}
+.noticias2{
+    background-image: url('img/noticias2.jpg');
+    background-size: 100%;
+}
+
+.row-others{
+	background-color: red;
+	width: 100%;
+}
+
+.row-others:after,
+.row-others .block-small:after{
+	content:'';
+	display: block;
+	clear: both;
+}
+
+.row-others .block-small{
+	width: 50%;
+	min-height: 50px;
+	background-color: yellow;
+	float:left;
+}
+
+
+
+.row-others .consultar-salas{
+	float: left;
+	height: 200px;
+	width: 100%;
+	background-color: blue;
+}
+
+.row-others .facebook-comments{
+	float: right;
+	height: 200px;
+	width: 100%;
+	background-color: purple;
+}
+
+/************/
+/* Portada. **/
+/************/
+
+.presentation{
+	position: relative;
+	margin-top: 10px;
+}
+
+.presentation .controls:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.presentation .controls{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: rgba(98,168,192,0);
+    position: absolute;
+    bottom: 10px;
+    z-index: 1;
+	width: 100%;
+	padding-right: 10px;
+	height: 90px;
+}
+
+.presentation .controls a{
+    cursor: pointer;
+    display: block;
+    height: 60px;
+    width: 90px;
+    margin-left: 20px;
+	margin-top: 20px;
+    border: solid thin black;
+	/*    border-radius: 50%;*/
+    background-color: #ABABAB;
+    float: right;
+}
+
+.presentation .controls a:hover,
+.presentation .controls a.selected{
+    background-color: #A03B92;
+}
+
+.presentation .controls a img{
+	width: 100%;
+	height: 100%;
+}
+
+.presentation .info{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 40%;
+    height: 100%;
+    background-color: rgba(98,168,192,.7);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding-top:40px;
+    padding-bottom: 50px;
+}
+
+.presentation .info h1,
+.presentation .info h2,
+.presentation .info h3,
+.presentation .info h4,
+.presentation .info h5{
+    text-align: center;
+}
+
+.presentation .info .font-purple{
+    text-align: center; 
+}
+
+.presentation ul img{
+	width: 100%;
+}
+
+.font-purple{
+    color: #A03B92
+}
+
+.font-white{
+    color: white;
+}
+
+
+/** Facebokk **/
+.comentarios-facebook{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.comentarios-facebook span{
+    width: 100%;
+}
+
+.comentarios-facebook h4{
+    margin-bottom: 10px;
+}
+
+.ver-mas a{
+    color: black;
+}
+
+.ver-mas{
+    margin-top: 10px;
+}
+
+
+.link-salas{
+    text-align: center;
+    margin:10px;
+    display: block;
+}
+
+
+.sinopsis{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ver-mas a{
+    color: #993399;
+    text-decoration: none;
+}
+
+
+/*****************************/
+/** Calendario Responsivo ****/
+/*****************************/
+
+.ui-datepicker{
+	width: 100%;
+}
+
+/*.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+	background-color: transparent !important;
+	border: 1px solid #CCCCCC !important;
+	color: #1C94C4 !important;
+}*/
