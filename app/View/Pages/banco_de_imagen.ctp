@@ -1,5 +1,5 @@
 
-<body>
+
 <h1>Banco de imagen*</h1>
 <p>Responsable: Nahún Calleros</p> 
 <p>Teléfono: 56 22 96 30 </p>
@@ -10,4 +10,6 @@
 <p>El banco de imágenes es una ventana al acervo de la Filmoteca para que los realizadores e interesados en general puedan acceder a las imágenes y darlas a conocer.</p> 
 
 <p>*Para tener acceso a este departamentos consultar Lineamentos Generales</p>
-</body>
+<?php
+echo $this ->Html->image("films/thumbnail_115.jpg")
+?>
