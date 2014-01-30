@@ -3,7 +3,7 @@ if (typeof functions === 'undefined')
 
 functions.push(function() {
 
-	var migajasFiltros = function($selectedFilters, results) {
+	var showAppliedFilters = function($selectedFilters, results) {
 		var $a = $selectedFilters.first();
 		var tmp = $('<a>', {
 			href: "#",
@@ -11,7 +11,7 @@ functions.push(function() {
 
 		tmp.data('filter', $a.data('filter'));
 		tmp.html($a.html());
-		$('#applied-filters').append('&gt;').append(tmp);
+		$('#applied-filters').html(tmp);
 
 		$('#results').html(results);
 		if (results === 0)
@@ -21,7 +21,7 @@ functions.push(function() {
 	};
 
     $('#filters-menu').billboardWithFilters({
-		showAppliedFilters : migajasFiltros
+		showAppliedFilters : showAppliedFilters
 	}).hideshowSubmenus();
 
     var url = document.URL;
