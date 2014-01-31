@@ -29,7 +29,7 @@ foreach($mt as $val){
 		<?php foreach( $details as $key => $val ):?>
 		<p>
 			<?php if (!empty($val)): ?>
-					<b><?php echo strtoupper($key) ?>: </b> <?php echo $val ?><br>
+					<b><?php echo mb_strtoupper($key) ?>: </b> <?php echo $val ?><br>
 				<?php endif ?>
 			<?php endforeach?>
 		</p>

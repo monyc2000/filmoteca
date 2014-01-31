@@ -19,7 +19,7 @@ $this->Html->addCrumb('Salas', '/auditoriums/detail/' . $auditorium['id']);
 		'controller' => 'exhibitions',
 		'action' => 'index',
 		'filter' =>
-		strtolower(
+		mb_strtolower(
 				str_replace(' ', '_', $auditorium['nombre'])));
 	echo $this->Html->link('Consultar películas que se exhiben en esta sala.'
 			, $road);
