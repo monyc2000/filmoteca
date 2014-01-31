@@ -30,9 +30,14 @@ class BooksController extends AppController {
 		$this->set('titulo', $tmp['Book']['título']);
 		$this->set('sinopsis', $tmp['Book']['sinopsis']);
 
+		if (empty($tmp['Book']['subtítulo'])) {
+			$this->set('subitulo', $tmp['Book']['subtítulo']);
+		}
+
 		unset($tmp['Book']['id']);
 		unset($tmp['Book']['item_id']);
 		unset($tmp['Book']['título']);
+		unset($tmp['Book']['subtítulo']);
 		unset($tmp['Book']['sinpsis']);
 
 
