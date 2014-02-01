@@ -324,16 +324,14 @@ footer .fiaf .definicion{
     width: 100%;
 }
 
-.items .item a.slayer{
-    text-decoration: none;
-    padding: 10px;
-}
-
 .items .item .slayer{
+	text-decoration: none;
+    padding: 10px;
+    color: white;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     position: absolute;
-    bottom: 0px;
+	top: 0px;
     left: 0px;
     display: none;
     width: 100%;
