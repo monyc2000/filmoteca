@@ -17,7 +17,7 @@ foreach($mt as $val){
 <div class="details">
 	<h2><?php echo $titulo?></h2>
 	<div class="cartel">
-		<?php echo $this->Html->image('films/full_' . $id . '.jpg');?>u
+		<?php echo $this->Html->image('films/full_' . $id . '.jpg');?>
 	</div>
 	<div class="fb-like" 
 		 data-href="<?php echo Router::url('/',true) . 'films/detail/' . $id?>"
