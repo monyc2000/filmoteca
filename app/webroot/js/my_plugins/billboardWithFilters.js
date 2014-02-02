@@ -110,8 +110,26 @@
 	$.fn.billboardWithFilters.defaults = {
 		containerItems: '#items',
 		items: 'li.item', // Relativo a containerItems
-		showAppliedFilters: function(selectedFilters, results) {
+		showAppliedFilters: showAppliedFilters = function($selectedFilters, results) {
+			var $this = $(this);
+			var $a = $selectedFilters.first();
+			var tmp = $('<a>', {
+				href: "#",
+			});
+
+			tmp.data('filter', $a.data('filter'));
+			tmp.html($a.html());
+			$($this.data('ops').appliedFilters).html(tmp);
+
+			$($this.data('ops').result).html(results);
+			if (results === 0)
+				$($this.data('ops').withoutResults).show();
+			else
+				$($this.data('ops').withoutResults).hide();
 		},
+		appliedFilters: "#applied-filters",
+		result: '#results',
+		withoutResults: '#without-results',
 		show: 'blind',
 		hide: 'blind',
 		filtersSelector: '> ul > li > ul > li' //Selector que elementos serviran de filtros.

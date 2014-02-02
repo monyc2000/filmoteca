@@ -2,26 +2,7 @@ if (typeof functions === 'undefined')
 	functions = new Array();
 functions.push(function() {
 
-	var showAppliedFilters = function($selectedFilters, results) {
-		var $a = $selectedFilters.first();
-		var tmp = $('<a>', {
-			href: "#",
-		});
-
-		tmp.data('filter', $a.data('filter'));
-		tmp.html($a.html());
-		$('#applied-filters').html(tmp);
-
-		$('#results').html(results);
-		if (results === 0)
-			$('#without-results').show();
-		else
-			$('#without-results').hide();
-	};
-
-	 $('#filters-menu').billboardWithFilters({
-		showAppliedFilters : showAppliedFilters
-	}).hideshowSubmenus();
+	 $('#filters-menu').billboardWithFilters().hideshowSubmenus();
 
 	$('#items').find('a').fancybox({
 		maxWidth: 900
