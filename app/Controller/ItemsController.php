@@ -61,11 +61,7 @@ class ItemsController extends AppController {
 	}
 
 	public function edit($id = null) {
-
-		$this->loadModel('Film');
-		$this->loadModel('Book');
-		$this->loadModel('Souvenir');
-
+		
 		if (!$id) {
 			throw new NotFoundException(__('Artículo invalido'));
 		}
@@ -80,18 +76,21 @@ class ItemsController extends AppController {
 			case (3):
 				$fields = $this->getFields($this->Item->Film);
 				$modelId = $item['Film']['id'];
-				$this->Film->id = $modelId;
+				$this->Item->Film->id = $modelId;
 				$model = 'Film';
 				break;
 			case(2):
 				$fields = $this->getFields($this->Item->Book);
 				$modelId = $item['Book']['id'];
-				$this->Book->id = $modelId;
+				$this->Item->Book->id = $modelId;
 				$model = 'Book';
 				break;
 			default:
 				$fields = $this->getFields($this->Item->Souvenir);
+				$modelId = $item['Souvenir']['id'];
+				$this->Item->Souvenir->id = $modelId;
 				$model = 'Souvenir';
+				break;
 		}
 
 		$this->set('fields', $fields);
@@ -106,7 +105,7 @@ class ItemsController extends AppController {
 			$this->Item->id = $id;
 
 			$a = $this->Item->save($this->request->data['Item']);
-			$b = $this->Film->save($this->request->data[$model]);
+			$b = $this->Item->$model->save($this->request->data[$model]);
 			if (($a && $b)) {
 				$tmp = $this->ImageUploader->uploadThem($model, $modelId, $this->request->data);
 				if (is_bool($tmp) && $tmp) {
@@ -114,8 +113,6 @@ class ItemsController extends AppController {
 				} else {
 					$message .= $tmp;
 				}
-			} else {
-				debug('a');
 			}
 
 			$this->Session->setFlash(__($message));
