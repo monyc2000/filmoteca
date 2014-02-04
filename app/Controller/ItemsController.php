@@ -5,9 +5,6 @@ class ItemsController extends AppController {
 	public $scaffold = 'admin';
 
 	public function add() {
-		$this->loadModel('Film');
-		$this->loadModel('Book');
-		$this->loadModel('Souvenir');
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
 		$message = __('No fue posible guardar el artículo.');
@@ -17,13 +14,13 @@ class ItemsController extends AppController {
 
 				switch ($this->request->data['Item']['shop_category_id']) {
 					case (3):
-						$tmp = $this->ImageUploader->uploadThem('Film', $this->Film->id, $this->request->data);
+						$tmp = $this->ImageUploader->uploadThem('Film', $this->Item->Film->id, $this->request->data);
 						break;
 					case (2):
-						$tmp = $this->ImageUploader->uploadThem('Book', $this->Book->id, $this->request->data);
+						$tmp = $this->ImageUploader->uploadThem('Book', $this->Item->Book->id, $this->request->data);
 						break;
 					default:
-						$tmp = $this->ImageUploader->uploadThem('Souvenir', $this->Souvenir->id, $this->request->data);
+						$tmp = $this->ImageUploader->uploadThem('Souvenir', $this->Item->Souvenir->id, $this->request->data);
 						break;
 				}
 
@@ -44,14 +41,13 @@ class ItemsController extends AppController {
 					'fields' => array(
 						'id', 'nombre')
 					, 'order' => array('ShopCategory.id'))));
-		$this->set('genres', $this->Film->Genre->find('list', array(
-					'fields' => array(
-						'id', 'género')
-						)
-		));
 
-		$bookFields = $this->Book->getFields($this->Item->Book);
-		$filmFields = $this->Film->getFields($this->Item->Film);
+		$this->set('genres', $this->Item->Film->Genre->find('list', array(
+					'fields' => array(
+						'id', 'género'))));
+
+		$bookFields = $this->Item->Book->getFields();
+		$filmFields = $this->Item->Film->getFields();
 
 		$this->set('bookFields', $bookFields);
 		$this->set('bookBlackList', array('id', 'item_id'));
@@ -61,7 +57,7 @@ class ItemsController extends AppController {
 	}
 
 	public function edit($id = null) {
-		
+
 		if (!$id) {
 			throw new NotFoundException(__('Artículo invalido'));
 		}
@@ -74,19 +70,22 @@ class ItemsController extends AppController {
 
 		switch ($item['ShopCategory']['id']) {
 			case (3):
-				$fields = $this->getFields($this->Item->Film);
+				$fields = $this->Item->Film->getFields($item['Film']['genre_id']);
 				$modelId = $item['Film']['id'];
 				$this->Item->Film->id = $modelId;
 				$model = 'Film';
+				$this->set('genres', $this->Item->Film->Genre->find('list', array(
+							'fields' => array(
+								'id', 'género'))));
 				break;
 			case(2):
-				$fields = $this->getFields($this->Item->Book);
+				$fields = $this->Item->Book->getFields();
 				$modelId = $item['Book']['id'];
 				$this->Item->Book->id = $modelId;
 				$model = 'Book';
 				break;
 			default:
-				$fields = $this->getFields($this->Item->Souvenir);
+				$fields = $this->Item->Souvenir->getFields();
 				$modelId = $item['Souvenir']['id'];
 				$this->Item->Souvenir->id = $modelId;
 				$model = 'Souvenir';
@@ -117,7 +116,6 @@ class ItemsController extends AppController {
 
 			$this->Session->setFlash(__($message));
 		}
-
 		if (!$this->request->data) {
 			$this->request->data = $item;
 		}
@@ -192,15 +190,6 @@ class ItemsController extends AppController {
 
 	public function showCart() {
 		
-	}
-
-	private function getFields($model) {
-		$fields = array('legend' => false);
-		foreach ($model->schema() as $key => $value) {
-			array_push($fields, $model->name . '.' . $key);
-		}
-
-		return $fields;
 	}
 
 	private function getSpecificItem($item) {

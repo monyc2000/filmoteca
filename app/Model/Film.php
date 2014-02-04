@@ -9,7 +9,7 @@ class Film extends AppModel {
 
 	public function getFields($genre_id = 1) {
 		$fields = array('legend' => false);
-		
+
 		foreach ($this->schema() as $key => $value) {
 			switch ($key) {
 				case ('año'):
