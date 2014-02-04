@@ -14,7 +14,7 @@ if (!isset($extraClass)) {
 			$cartUrl =  array(
 				'controller' => 'items',
 				'action' => 'addToCart',
-				$item[$model]['id']
+				$item['Item']['id']
 			);
 			$detailUrl = array(
 				'controller' => strtolower($model) . 's',
