@@ -197,7 +197,7 @@ footer .fiaf .definicion{
     padding: 5px 10px;
     width: 100%;
     background-color: #c0bebd;
-  	background: -moz-linear-gradient(#c0bebd,#fff);
+	background: -moz-linear-gradient(#c0bebd,#fff);
 }
 
 .breadcrumbs{
@@ -232,15 +232,15 @@ footer .fiaf .definicion{
 	border-left: 1px solid #14374b;
     border-right: 1px solid #888;
     color: #EEE;  
-/*	background-image: url('imgs/button_menu.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;*/
+	/*	background-image: url('imgs/button_menu.png');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;*/
 }
 
 .main-menu ul li:hover{
-     background: #1b4c66;
+	background: #1b4c66;
 	/*background-image: url('imgs/button_menu_over.png');*/
-	
+
 }
 
 
@@ -251,7 +251,7 @@ footer .fiaf .definicion{
     line-height: normal;
     width: 100%;
     font-size: .65em;
-   /* font-weight: bold;*/
+	/* font-weight: bold;*/
     text-decoration: none;
     text-align: center;
     vertical-align: middle;
@@ -280,12 +280,12 @@ footer .fiaf .definicion{
     border-bottom: 1px solid #14374b;
     background-image: none;
 	opacity: 0.8; 
-  	background: #487690;
-/*    background: -moz-linear-gradient(#1b4c66,#2c7da9);
-    background: -webkit-linear-gradient(#1b4c66,#2c7da9);
-    background: -o-linear-gradient(#1b4c66,#2c7da9);
-    background: -ms-linear-gradient(#1b4c66,#2c7da9);
-    background: linear-gradient(#1b4c66,#2c7da9);*/
+	background: #487690;
+	/*    background: -moz-linear-gradient(#1b4c66,#2c7da9);
+		background: -webkit-linear-gradient(#1b4c66,#2c7da9);
+		background: -o-linear-gradient(#1b4c66,#2c7da9);
+		background: -ms-linear-gradient(#1b4c66,#2c7da9);
+		background: linear-gradient(#1b4c66,#2c7da9);*/
 }
 
 .main-menu > ul > li:hover ul{
@@ -324,16 +324,14 @@ footer .fiaf .definicion{
     width: 100%;
 }
 
-.items .item a.slayer{
-    text-decoration: none;
-    padding: 10px;
-}
-
 .items .item .slayer{
+	text-decoration: none;
+    padding: 10px;
+    color: white;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     position: absolute;
-    bottom: 0px;
+	top: 0px;
     left: 0px;
     display: none;
     width: 100%;
@@ -542,9 +540,16 @@ table{
 
 table td,
 table th{
-     border: solid thin purple;
+	border: solid thin purple;
     border-collapse: collapse;
     padding: 5px;
+}
+
+.message{
+	font-size: 16px;
+	text-align: center;
+	color: green;
+	font-weight: bold;
 }
 
 /*****************/
@@ -556,7 +561,8 @@ table th{
 }
 /* Para no resaltar el día de hoy*/
 .ui-state-highlight{
-    background-color: #F6F6F6 !important;
+    background-color: #DFEFFC !important;
+	background-image: none !important;
     border: 1px solid #CCCCCC !important;
     color: #1C94C4 !important;
 }

@@ -18,6 +18,9 @@
 					'filmoteca-mediaqueries'));
 		echo $this->Html->script('libs/jquery-1.9.1.min');
 		echo $this->Html->script('libs/jquery-ui-1.10.0.min');
+		if (isset($isHome) && $isHome) {
+			echo $this->Html->script('libs/jquery.ui.datepicker-es');
+		}
 		echo $this->fetch('script'); //estos srcripts sólo deben agregar funciones al arreglo functions
 		echo $this->Html->script('filmoteca');
 		?>
