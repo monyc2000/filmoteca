@@ -1,3 +1,4 @@
+<?php echo $this->Html->addCrumb('Tienda', '/shop/index');?>
 <?php $cart = $this->Session->read('cart');?>
 <?php $total = 0 ?>
 <table>
@@ -21,7 +22,7 @@
 			</tr>
 		<?php endforeach ?>
 	<?php endif ?>
-	<tr><td>Total</td><td colspan="3" class="total"><?php echo $total ?></td></tr>
+	<tr><td>Total</td><td colspan="3" class="total">$ <?php echo $total ?></td></tr>
 </table>
 <?php
 echo $this->Html->Link('Continuar', array('controller' => 'Orders', 'action' => 'add'));

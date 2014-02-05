@@ -1,6 +1,6 @@
 <?php
 
-$this->Html->addCrumb('Tienda', '/items/index');
+$this->Html->addCrumb('Tienda', '/shop/index');
 $this->Html->addCrumb('Lista de Compras', '/items/showCart');
 
 $formOptions = array(
