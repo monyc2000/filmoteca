@@ -139,9 +139,9 @@ class ItemsController extends AppController {
 				'fields' => array(
 					'Item.precio_general',
 					'Item.precio_especial',
-					'Item.in_stock',
-					'Film.titulo',
-					'Book.titulo',
+					'Item.existencias',
+					'Film.título',
+					'Book.título',
 					'Souvenir.nombre'
 				)
 			));
