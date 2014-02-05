@@ -56,11 +56,6 @@ class PagesController extends AppController {
 				'month(Timetable.fecha) = ' => date('m')
 			));
 			$this->set('films', $films);
-
-
-			//indicando que estamos en la home page
-
-			$this->set('isHome', true);
 		}
 
 		$count = count($path);

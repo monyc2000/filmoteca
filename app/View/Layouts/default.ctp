@@ -3,12 +3,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<?php
-		if (isset($isHome) && $isHome) {
-			$this->Html->css('presentation', null, array('inline' => false));
-			$this->Html->script('my_plugins/presentation', array('inline' => false));
-		}
-		?>
-		<?php
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->Html->css(
@@ -28,6 +22,9 @@
     </head>
 
     <body>
+		<?php
+		echo $this->fetch('shopping-cart');
+		?>
         <div class="wrapper">
             <header>
 				<div class="higher-links">
@@ -73,9 +70,9 @@
 						</span>
 					</div>
 				</div>
-				<?php if (isset($isHome) && $isHome): ?>
-					<?php echo $this->element('presentation') ?>
-				<?php endif ?>
+				<?php
+				echo $this->fetch('presentation');
+				?>
 				<div class="main-menu">
                     <ul>
 						<li>

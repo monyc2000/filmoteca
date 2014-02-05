@@ -9,6 +9,7 @@ $this->Html->css(
 		array('../js/libs/fancybox/jquery.fancybox.css')
 		, array('inline' => false));
 ?>
+<?php $this->start('shopping-cart'); ?>
 <div class="wrapper-cart">
 	<div id="cart" data-href="/filmotecaH/js/cart.json">
 		<div class="shopping">
@@ -36,16 +37,16 @@ $this->Html->css(
 			</div>
 			<div class="view-shopping-list">
 				<?php
-				$url = Router::url(array(
-							'controller' => 'items',
-							'action' => 'showCart'))
+				echo $this->Html->link(
+						'Ver lista de compras', array('controller' => 'items',
+					'action' => 'showCart'))
 				?>
-				<a href="<?php echo $url ?>">Ver lista de compras</a></div>
+			</div>
+			<div class = "total">Total: <span><?php echo $total ?></span></div>
 		</div>
-		<div class = "total">Total: <span><?php echo $total
-				?></span></div>
 	</div>
 </div>
+<?php $this->end() ?>
 <div>Resultados: <span id="results">Todos</span></div>
 <div>Filtros: <span class="applied-filters" id="applied-filters"> </span></div>
 <div class="filters-menu" id="filters-menu">
