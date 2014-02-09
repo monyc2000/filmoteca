@@ -2,16 +2,7 @@
 
 class FilmsController extends AppController {
 
-	public $scaffold = 'admin';
-	public $components = array('Paginator');
-	public $paginate = array(
-		'limit' => 25,
-		'order' => array(
-			'Film.[1]' => 'asc'
-		)
-	);
-
-	public function add() {
+	public function admin_add() {
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
 		$message = 'No se pudo guardar la película.';
@@ -27,11 +18,12 @@ class FilmsController extends AppController {
 			$this->Session->setFlash(__($message));
 		}
 
-		$filmFields = $this->Film->getFields();
+		$filmFields = $this->Film->getFieldInputs();
 		$this->set('genres', $this->Film->Genre->find('list', array('fields' => array(
 						'id', 'género'))));
 		$this->set('filmFields', $filmFields);
 		$this->set('filmBlackList', array('item_id'));
+
 		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
 		} else {
@@ -45,31 +37,13 @@ class FilmsController extends AppController {
 			throw new NotFoundException(__('Película Invalida.'));
 		}
 
-		$this->loadModel('Router');
-
-		$film = $this->Film->find('first', array(
-			'conditions' => array(
-				'Film.id' => $id),
-			'recursive' => 0
-		));
+		$film = $this->Film->findById($id);
 
 		if (!$film) {
 			throw new NotFoundException(__('Película Invalida.'));
 		}
 
-		$fromFacebook = isset($_GET["_escaped_fragment_"]);
-		$mt = array(
-			array('property' => 'og:title', 'content' => $film['Film']['título']),
-			array('property' => 'og:type', 'content' => 'video.movie'),
-			array('proporty' => 'og:url',
-				'content' => $this->Router->url(array(
-					'controller' => 'films',
-					'action' => 'detail',
-					$film['Film']['id']))),
-			array('property' => 'og:image', 'content' => Router::url('/', true) . 'imgs/films/thumbnail_' . $id . '.jpg')
-		);
-
-		$this->set('mt', $mt);
+		$this->set('mt', $this->Film->getMetatagsForOpengraph($id, $film['Film']['título']));
 
 		$this->set('titulo', $film['Film']['título']);
 		$this->set('sinopsis', $film['Film']['sinopsis']);
@@ -86,6 +60,7 @@ class FilmsController extends AppController {
 		unset($film['Film']['id']);
 		$this->set('details', $film['Film']);
 
+		$fromFacebook = isset($_GET["_escaped_fragment_"]);
 		if ($fromFacebook || !$this->request->is('ajax')) {
 			$this->layout = 'default';
 		} else {
@@ -93,7 +68,7 @@ class FilmsController extends AppController {
 		}
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 
 		if (!$id) {
 			throw new NotFoundException(__('Película invalido'));
@@ -121,7 +96,7 @@ class FilmsController extends AppController {
 			$this->Session->setFlash(__($message));
 		}
 
-		$filmFields = $this->Film->getFields($genre_id);
+		$filmFields = $this->Film->getFieldInputs($genre_id);
 		$this->set('filmFields', $filmFields);
 		$this->set('filmBlackList', array('item_id'));
 		$this->set('genres', $this->Film->Genre->find('list', array(
@@ -153,6 +128,25 @@ class FilmsController extends AppController {
 		$this->set('data', $newData);
 
 		$this->layout = 'ajax';
+	}
+
+	public function admin_index() {
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 5,
+			'recursive' => 1,
+			'fields' => array('Film.*', 'Genre.género')
+		);
+
+		$model = $this->modelClass;
+		$data = $this->Film->compact($this->Paginator->paginate($model), 'Film');
+		$titles = array_keys($this->$model->schema());
+		$index = array_search('genre_id', $titles);
+		$titles[$index] = 'género';
+
+		$this->set('data', $data);
+		$this->set('titles', $titles);
+		$this->set('model', $model);
 	}
 
 }

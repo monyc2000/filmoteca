@@ -2,9 +2,7 @@
 
 class ItemsController extends AppController {
 
-	public $scaffold = 'admin';
-
-	public function add() {
+	public function admin_add() {
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
 		$message = __('No fue posible guardar el artículo.');
@@ -46,8 +44,8 @@ class ItemsController extends AppController {
 					'fields' => array(
 						'id', 'género'))));
 
-		$bookFields = $this->Item->Book->getFields();
-		$filmFields = $this->Item->Film->getFields();
+		$bookFields = $this->Item->Book->getFieldInputs();
+		$filmFields = $this->Item->Film->getFieldInputs();
 
 		$this->set('bookFields', $bookFields);
 		$this->set('bookBlackList', array('id', 'item_id'));
@@ -56,7 +54,7 @@ class ItemsController extends AppController {
 		$this->set('filmBlackList', array('id', 'item_id'));
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 
 		if (!$id) {
 			throw new NotFoundException(__('Artículo invalido'));
@@ -70,43 +68,45 @@ class ItemsController extends AppController {
 
 		switch ($item['ShopCategory']['id']) {
 			case (3):
-				$fields = $this->Item->Film->getFields($item['Film']['genre_id']);
-				$modelId = $item['Film']['id'];
-				$this->Item->Film->id = $modelId;
+
+				if ($this->request->is(array('post', 'put'))) {
+					$genero = $this->request->data['Film']['genre_id'];
+					$año = $this->request->data['Film']['año'];
+				} else {
+					$genero = $item['Film']['genre_id'];
+					$año = $item['Film']['año'];
+				}
+
+				$fields = $this->Item->Film->getFieldInputs($genero, $año);
 				$model = 'Film';
 				$this->set('genres', $this->Item->Film->Genre->find('list', array(
 							'fields' => array(
 								'id', 'género'))));
 				break;
 			case(2):
-				$fields = $this->Item->Book->getFields();
-				$modelId = $item['Book']['id'];
-				$this->Item->Book->id = $modelId;
+				if ($this->request->is(array('post', 'put'))) {
+					$año = $this->request->data['Book']['año'];
+				} else {
+					$año = $item['Book']['año'];
+				}
+				$fields = $this->Item->Book->getFieldInputs($año);
 				$model = 'Book';
 				break;
 			default:
-				$fields = $this->Item->Souvenir->getFields();
-				$modelId = $item['Souvenir']['id'];
-				$this->Item->Souvenir->id = $modelId;
+				$fields = $this->Item->Souvenir->getFieldInputs();
 				$model = 'Souvenir';
 				break;
 		}
-
-		$this->set('fields', $fields);
-		$this->set('blackList', array('id', 'item_id'));
-		$this->set('model', $model);
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
 		$message = "No se pudo acualizar el artículo.";
 
 		if ($this->request->is(array('post', 'put'))) {
-			$this->request->data[$model]['id'] = $modelId;
-			$this->Item->id = $id;
+			$this->request->data[$model]['id'] = $item[$model]['id'];
+			$this->request->data['Item']['id'] = $id;
 
-			$a = $this->Item->save($this->request->data['Item']);
-			$b = $this->Item->$model->save($this->request->data[$model]);
-			if (($a && $b)) {
-				$tmp = $this->ImageUploader->uploadThem($model, $modelId, $this->request->data);
+			if ($this->Item->saveAssociated($this->request->data)) {
+				$tmp = $this->ImageUploader->uploadThem($model, $item[$model]['id'], $this->request->data);
 				if (is_bool($tmp) && $tmp) {
 					$message = "Artículo editado.";
 				} else {
@@ -116,9 +116,145 @@ class ItemsController extends AppController {
 
 			$this->Session->setFlash(__($message));
 		}
-		if (!$this->request->data) {
+
+		$this->set('fields', $fields);
+		$this->set('blackList', array('id', 'item_id'));
+		$this->set('model', $model);
+
+		if (empty($this->request->data)) {
 			$this->request->data = $item;
 		}
+	}
+
+	/**
+	 * Nombre del modelo de los artículos que se deasea editar. 
+	 * @param string $model
+	 */
+	public function admin_index($model = "Souvenir") {
+
+		switch ($model) {
+			case("Book"):
+				$category = "Libros";
+				$shop_category_id = 2;
+				break;
+			case("Film"):
+				$category = "Películas";
+				$shop_category_id = 3;
+				break;
+			default:
+				$category = "Artículos Promocionales";
+				$shop_category_id = array(4, 5, 6, 7);
+				break;
+		}
+
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 5,
+			'recursive' => 1,
+			'conditions' => array(
+				'shop_category_id' => $shop_category_id
+			),
+			'fields' => array(
+				'Item.*',
+				'Film.título',
+				'Film.id',
+				'Book.título',
+				'Book.id',
+				'Souvenir.id',
+				'Souvenir.nombre'
+			)
+		);
+
+		$specificTitles = array('título');
+
+		$itemTitles = array_keys($this->Item->schema());
+		unset($itemTitles[array_search('shop_category_id', $itemTitles)]);
+		$titles = array_merge($itemTitles, $specificTitles);
+
+		$data = $this->Paginator->paginate('Item');
+
+		$this->set('data', $this->Item->compact($data, $model));
+		$this->set('titles', $titles);
+		$this->set('model', 'Item');
+		$this->set('category', $category);
+	}
+
+	public function admin_delete($id = null) {
+
+		if (empty($id)) {
+			throw new NotFoundException();
+		}
+
+		$data = $this->Item->findById($id, 'Item.shop_category_id');
+
+		if (empty($data)) {
+			throw new NotFoundException();
+		}
+
+		$model = $this->Item->ShopCategory->getAssociatedModel($data['Item']['shop_category_id']);
+
+		$modelId = $this->Item->$model->find('first', array(
+					'fields' => 'id',
+					'conditions' => array(
+						'item_id' => $id
+					)
+				))[$model]['id'];
+		debug($modelId);
+
+
+		if ($this->Item->delete($id)) {
+			$this->Session->setFlash(__('Artículo borrado para siempre.'));
+
+			if ($model !== 'Film') {
+				unlink(WWW_ROOT . 'img' . DS . strtolower($model) . 's' . DS . 'full_' . $modelId . '.jpg');
+				unlink(WWW_ROOT . 'img' . DS . strtolower($model) . 's' . DS . 'thumbnail_' . $modelId . '.jpg');
+			}
+		}
+
+		$this->redirect(array('action' => 'index', $model));
+	}
+	
+	public function admin_on_off($id = null, $on_off){
+		
+		$on_off = ($on_off + 1) % 2;
+		
+		if(empty($id)){
+			throw new NotFoundException();
+		}
+		
+		$data = $this->Item->findById($id, 'Item.shop_category_id');
+
+		if (empty($data)) {
+			throw new NotFoundException();
+		}
+
+		$model = $this->Item->ShopCategory->getAssociatedModel($data['Item']['shop_category_id']);
+		
+		$this->Item->id = $id;
+		$this->Item->saveField('activo',$on_off);
+		$this->redirect(array('action' => 'index',$model ));
+	}
+
+	public function detail($id = null) {
+
+		if (empty($id)) {
+			throw new NotFoundException();
+		}
+
+		$data = $this->Item->findById($id, 'shop_category_id');
+
+		if (empty($data)) {
+			throw new NotFoundException();
+		}
+
+		$model = $this->Item->ShopCategory->getAssociatedModel($data['Item']['shop_category_id']);
+		$id = $this->Item->$model->find('first', array(
+			'conditions' => array(
+				'item_id' => $id
+			),
+			'fields' => array('id')
+		));
+		$this->redirect(array('controller' => strtolower($model) . 's', 'action' => 'detail', $id[$model]['id']));
 	}
 
 	public function addToCart($itemId = null, $amount = 1) {
@@ -190,23 +326,6 @@ class ItemsController extends AppController {
 
 	public function showCart() {
 		
-	}
-
-	private function getSpecificItem($item) {
-		$l = array('Film', 'Book', 'Souvenir');
-
-		foreach ($l as $val) {
-			if (!empty($item[$val]['id'])) {
-				switch ($val) {
-					case ('Film'):
-						return $this->Item->Film;
-					case ('Book'):
-						return $this->Item->Book;
-					case ('Souvenir'):
-						return $this->Item->Souvenir;
-				}
-			}
-		}
 	}
 
 }

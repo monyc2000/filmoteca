@@ -1,26 +1,13 @@
 <?php
 
 class BooksController extends AppController {
-
-	public $scaffold = 'admin';
-	public $components = array('Paginator');
-	public $paginate = array(
-		'limit' => 25,
-		'order' => array(
-			'Book.[1]' => 'asc'
-		)
-	);
-
+	
 	public function detail($id = null) {
 
 		if (!$id) {
 			throw new NotFoundException(__('Libro invalido.'));
 		}
-		$tmp = $this->Book->find('first', array(
-			'conditions' => array(
-				'Book.id' => $id),
-			'recursive' => -1
-		));
+		$tmp = $this->Book->findById($id);
 
 		if (empty($tmp)) {
 			throw new NotFoundException(__('Libro invalido.'));
@@ -43,13 +30,28 @@ class BooksController extends AppController {
 
 		$this->set('bookDetails', $tmp['Book']);
 
-		$fromFacebook = false;
-
-		if ($fromFacebook) {
+		$fromFacebook = isset($_GET["_escaped_fragment_"]);
+		if ($fromFacebook || !$this->request->is('ajax')) {
 			$this->layout = 'default';
 		} else {
 			$this->layout = 'ajax';
 		}
+	}
+
+	public function admin_index() {
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 5,
+			'recursive' => 1
+		);
+
+		$model = $this->modelClass;
+		$titles = array_keys($this->$model->schema());
+		$data = $this->Paginator->paginate($model, array(), $titles);
+
+		$this->set('data', $data);
+		$this->set('titles', $titles);
+		$this->set('model', $model);
 	}
 
 }

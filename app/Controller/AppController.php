@@ -32,14 +32,4 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	public function admin() {
-		$this->Paginator->settings = $this->paginate;
-		$model = $this->modelClass;
-		$data = $this->Paginator->paginate($model);
-
-		$this->set('data', $data);
-		$this->set('titles', $this->$model->schema());
-		$this->set('model',$model);
-	}
-
 }

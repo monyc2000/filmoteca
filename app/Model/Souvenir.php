@@ -5,10 +5,12 @@ class Souvenir extends AppModel {
 	public $name = 'Souvenir';
 	public $belongsTo = 'Item';
 
-	public function getFields() {
+	public function getFieldInputs() {
 		$fields = array('legend' => false);
-		foreach ($this->schema() as $key => $value) {
-			array_push($fields, $this->name . '.' . $key);
+		$titles = array_keys($this->schema());
+		foreach ($titles as $val) {
+			array_push($fields, $this->name . '.' . $val);		
+			
 		}
 
 		return $fields;

@@ -6,3 +6,12 @@ label.error{
     color: red;
 }
 
+table.admin-index {
+	margin: 15px 0px;
+}
+
+.column{
+	float:left;
+	margin-left: 20px;
+	padding: 5px;
+}

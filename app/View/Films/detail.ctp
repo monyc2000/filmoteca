@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Tienda','/shop');
 
 foreach($mt as $val){
 	$this->Html->meta($val,null,array('inline' => false));

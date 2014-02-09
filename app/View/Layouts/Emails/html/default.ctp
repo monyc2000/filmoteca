@@ -22,8 +22,8 @@
 	<title><?php echo $title_for_layout; ?></title>
 </head>
 <body>
+	
 	<?php echo $this->fetch('content'); ?>
-
-	<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>
+	<p>Mensaje enviado por el sistema de la filmoteca de la UNAM</p>
 </body>
 </html>

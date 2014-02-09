@@ -1,8 +1,19 @@
 <?php
 
 class ShopCategory extends AppModel{
-	public $name = 'ShopCategory';
+	public $name = 'ShopCategories';
 	public $hasMany = 'Item';
-	public $displayField = 'nombre';
+	
+	public function getAssociatedModel($id){
+		
+		switch($id){
+			case (2):
+				return 'Book';
+			case (3): 
+				return 'Film';
+			default:
+				return 'Souvenir';
+		}
+	}
 }
 

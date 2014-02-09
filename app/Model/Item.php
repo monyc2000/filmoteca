@@ -19,5 +19,18 @@ class Item extends AppModel {
 
 		return $item;
 	}
+	
+	public function compact($data,$model){
+		$newData = array();
+		foreach($data as $datum){
+			unset($datum[$model]['id']);
+			unset($datum[$model]['item_id']);
+			unset($datum['Item']['shop_category_id']);
+			$datum['Item']['activo'] = ($datum['Item']['activo'])? __('Sí'): __('No');
+			$newRow['Item'] = array_merge($datum['Item'], $datum[$model]);
+			array_push($newData,$newRow);
+		}
+		return $newData;
+	}
 
 }
