@@ -199,29 +199,27 @@ class ItemsController extends AppController {
 						'item_id' => $id
 					)
 				))[$model]['id'];
-		debug($modelId);
 
 
 		if ($this->Item->delete($id)) {
 			$this->Session->setFlash(__('Artículo borrado para siempre.'));
 
 			if ($model !== 'Film') {
-				unlink(WWW_ROOT . 'img' . DS . strtolower($model) . 's' . DS . 'full_' . $modelId . '.jpg');
-				unlink(WWW_ROOT . 'img' . DS . strtolower($model) . 's' . DS . 'thumbnail_' . $modelId . '.jpg');
+				$this->Item->$model->deleteImages($modelId);
 			}
 		}
 
 		$this->redirect(array('action' => 'index', $model));
 	}
-	
-	public function admin_on_off($id = null, $on_off){
-		
+
+	public function admin_on_off($id = null, $on_off) {
+
 		$on_off = ($on_off + 1) % 2;
-		
-		if(empty($id)){
+
+		if (empty($id)) {
 			throw new NotFoundException();
 		}
-		
+
 		$data = $this->Item->findById($id, 'Item.shop_category_id');
 
 		if (empty($data)) {
@@ -229,10 +227,10 @@ class ItemsController extends AppController {
 		}
 
 		$model = $this->Item->ShopCategory->getAssociatedModel($data['Item']['shop_category_id']);
-		
+
 		$this->Item->id = $id;
-		$this->Item->saveField('activo',$on_off);
-		$this->redirect(array('action' => 'index',$model ));
+		$this->Item->saveField('activo', $on_off);
+		$this->redirect(array('action' => 'index', $model));
 	}
 
 	public function detail($id = null) {

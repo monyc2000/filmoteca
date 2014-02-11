@@ -9,13 +9,13 @@ class Film extends AppModel {
 	public function getFieldInputs($genre_id = 1, $año = 2014) {
 		$fields = array('legend' => false);
 		$titles = array_keys($this->schema());
-		
+
 		foreach ($titles as $val) {
 			switch ($val) {
 				case ('año'):
 					$fields['Film.year'] = array(
 						'label' => 'Año',
-						'selected' => $año.'-01-01 00:00:00',
+						'selected' => $año . '-01-01 00:00:00',
 						'type' => 'date',
 						'minYear' => '1880',
 						'maxYear' => date('Y'),
@@ -32,7 +32,7 @@ class Film extends AppModel {
 
 		return $fields;
 	}
-	
+
 	/**
 	 * Recibe un arreglo obtenido del metodo find y los compacta de tal manera
 	 * que los campos de relación, en este caso genre_id, se cambien por
@@ -41,16 +41,16 @@ class Film extends AppModel {
 	 * @param type $data
 	 * @return array
 	 */
-	public function compact($data, $model = "Film"){
+	public function compact($data, $model = "Film") {
 		$newData = array();
-		foreach($data as $datum){
+		foreach ($data as $datum) {
 			$datum['Film']['genre_id'] = $datum['Genre']['género'];
-			array_push($newData,$datum);
+			array_push($newData, $datum);
 		}
 		return $newData;
 	}
 
-	public function getMetatagsForOpengraph($id, $title){
+	public function getMetatagsForOpengraph($id, $title) {
 		return array(
 			array('property' => 'og:title', 'content' => $title),
 			array('property' => 'og:type', 'content' => 'video.movie'),
@@ -63,4 +63,18 @@ class Film extends AppModel {
 			array('property' => 'og:image', 'content' => Router::url('/', true) . 'imgs/films/thumbnail_' . $id . '.jpg')
 		);
 	}
+
+	public function deleteImage($id) {
+		$imgThumb = WWW_ROOT . 'img' . DS . strtolower($this->name) . 's' . DS . 'thumbnail_' . $modelId . '.jpg';
+		$imgFull = WWW_ROOT . 'img' . DS . strtolower($this->name) . 's' . DS . 'full_' . $modelId . '.jpg';
+
+		if (file_exists($imgThumb)) {
+			unlink($imgThumb);
+		}
+
+		if (file_exists($imgFull)) {
+			unlink($imgFull);
+		}
+	}
+
 }
