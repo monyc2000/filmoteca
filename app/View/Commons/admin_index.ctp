@@ -1,9 +1,9 @@
 <?php echo $this->fetch('head'); ?>
 <?php echo $this->Html->css('admin') ?>
 
-<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled prev')); ?>
 <?php echo $this->Paginator->numbers(); ?>
-<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled next')); ?>
 <table class="admin-index">
 	<tr>
 		<?php foreach ($titles as $val): ?>
@@ -31,6 +31,6 @@
 		</tr>
 	<?php endforeach; ?>
 </table>
-<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled prev')); ?>
 <?php echo $this->Paginator->numbers(); ?>
-<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled next')); ?>

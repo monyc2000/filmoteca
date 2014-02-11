@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('admin') ?>
+<?php $this->Html->css('admin',null, array('inline' => false)) ?>
 
 <h2>Visualizando <?php echo $category ?></h2>
 <div class="column"><?php
@@ -29,9 +29,9 @@
 </div>
 <div style="clear:left"></div>
 
-<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled prev')); ?>
 <?php echo $this->Paginator->numbers(); ?>
-<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled next')); ?>
 <table class="admin-index">
 	<tr>
 		<?php foreach ($titles as $val): ?>
@@ -69,6 +69,6 @@
 		</tr>
 	<?php endforeach; ?>
 </table>
-<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled prev')); ?>
 <?php echo $this->Paginator->numbers(); ?>
-<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled next')); ?>

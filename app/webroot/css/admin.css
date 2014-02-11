@@ -15,3 +15,11 @@ table.admin-index {
 	margin-left: 20px;
 	padding: 5px;
 }
+
+.next{
+	margin-left: 20px;
+}
+
+.prev{
+	margin-right: 20px;
+}
