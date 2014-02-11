@@ -1,5 +1,5 @@
-<?php $this->Html->css('admin',null, array('inline' => false)) ?>
-
+<?php $this->extend('/Commons/admin_index');?>
+<?php $this->start('head')?>
 <h2>Visualizando <?php echo $category ?></h2>
 <div class="column"><?php
 	echo $this->Html->link(
@@ -28,10 +28,9 @@
 	</ul>
 </div>
 <div style="clear:left"></div>
+<?php $this->end()?>
 
-<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled prev')); ?>
-<?php echo $this->Paginator->numbers(); ?>
-<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled next')); ?>
+<?php $this->start('table')?>
 <table class="admin-index">
 	<tr>
 		<?php foreach ($titles as $val): ?>
@@ -69,6 +68,4 @@
 		</tr>
 	<?php endforeach; ?>
 </table>
-<?php echo $this->Paginator->prev('<< Anterior', null, null, array('class' => 'disabled prev')); ?>
-<?php echo $this->Paginator->numbers(); ?>
-<?php echo $this->Paginator->next('Siguiente >>', null, null, array('class' => 'disabled next')); ?>
+<?php $this->end()?>

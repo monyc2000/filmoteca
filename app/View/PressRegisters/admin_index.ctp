@@ -1,8 +1,13 @@
-<?php $this->extend('/Commons/admin');?>
+<?php $this->extend('/Commons/admin_index');?>
+
+<?php $this->start('head')?>
+<h2>Administracion de Prensa</h2>
+<?php $this->end();?>
+
 <?php $this->start('table')?>
 <tr>
-	<?php foreach ($titles as $key => $val): ?>
-	<th><?php echo $this->Paginator->sort($key) ?></th>
+	<?php foreach ($titles as $val): ?>
+	<th><?php echo $this->Paginator->sort($val) ?></th>
 	<?php endforeach; ?>
 	<th>Acciones</th>
 </tr>

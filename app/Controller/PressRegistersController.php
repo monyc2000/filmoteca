@@ -3,7 +3,7 @@
 App::uses('CakeEmail', 'Network/Email');
 
 class PressRegistersController extends AppController {
-
+	
 	public function add() {
 
 		if ($this->request->is('post')) {
@@ -60,7 +60,7 @@ class PressRegistersController extends AppController {
 		$data = $this->Paginator->paginate($model);
 
 		$this->set('data', $data);
-		$this->set('titles', $this->$model->schema());
+		$this->set('titles', array_keys($this->$model->schema()));
 		$this->set('model', $model);
 	}
 
