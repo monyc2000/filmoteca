@@ -46,12 +46,10 @@
 			<?php endforeach; ?>
 			<td>
 				<?php
-				$activo = ($datum[$model]['activo'] == __('Sí'))? 1: 0;
 				echo $this->Html->link('Activar/Desactivar', array(
 					'controller' => strtolower($model) . 's',
 					'action' => 'on_off',
-					$datum[$model]['id'],
-					$activo), array('title' => 'Desactiva o Activa un articulo de la tienda.'))
+					$datum[$model]['id']), array('title' => 'Desactiva o Activa un articulo de la tienda.'))
 				?>
 				<br>
 				<?php echo $this->Html->link('Detalles', array('admin' => false, 'controller' => strtolower($model) . 's', 'action' => 'detail', $datum[$model]['id'])) ?>

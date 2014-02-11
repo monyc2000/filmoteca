@@ -212,15 +212,14 @@ class ItemsController extends AppController {
 		$this->redirect(array('action' => 'index', $model));
 	}
 
-	public function admin_on_off($id = null, $on_off) {
-
-		$on_off = ($on_off + 1) % 2;
+	public function admin_on_off($id = null) {
 
 		if (empty($id)) {
 			throw new NotFoundException();
 		}
 
-		$data = $this->Item->findById($id, 'Item.shop_category_id');
+		$data = $this->Item->findById($id, array('Item.shop_category_id','Item.activo'));
+		debug($data);
 
 		if (empty($data)) {
 			throw new NotFoundException();
@@ -229,7 +228,7 @@ class ItemsController extends AppController {
 		$model = $this->Item->ShopCategory->getAssociatedModel($data['Item']['shop_category_id']);
 
 		$this->Item->id = $id;
-		$this->Item->saveField('activo', $on_off);
+		$this->Item->saveField('activo', !$data['Item']['activo']);
 		$this->redirect(array('action' => 'index', $model));
 	}
 
