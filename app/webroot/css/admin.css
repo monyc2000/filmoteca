@@ -23,3 +23,9 @@ table.admin-index {
 .prev{
 	margin-right: 20px;
 }
+
+.submit-button{
+	border: solid thin purple;
+	padding: 8px;
+	font-size: 12px;
+}

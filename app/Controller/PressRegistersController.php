@@ -3,7 +3,7 @@
 App::uses('CakeEmail', 'Network/Email');
 
 class PressRegistersController extends AppController {
-	
+
 	public function add() {
 
 		if ($this->request->is('post')) {
@@ -36,10 +36,23 @@ class PressRegistersController extends AppController {
 	}
 
 	public function admin_index() {
+
+		$conditions = array();
+		if ($this->request->is('post')) {
+
+			foreach ($this->request->data as $key => $val) {
+				if (!empty($val)) {
+					array_push($conditions, array(
+						$key . '(PressRegister.fecha_del_registro) = ' =>
+						$val));
+				}
+			}
+		}
+
 		$this->Paginator = $this->Components->load('Paginator');
 		$this->Paginator->settings = array(
 			'limit' => 5,
-			'order' => array('fecha_de_registro'),
+			'order' => array('PressRegister.fecha_del_registro' => 'DESC'),
 			'recursive' => 2,
 			'joins' => array(
 				array(
@@ -53,7 +66,8 @@ class PressRegistersController extends AppController {
 			),
 			'fields' => array(
 				'PressRegister.*',
-				'TipoDeMedio.nombre')
+				'TipoDeMedio.nombre'),
+			'conditions' => $conditions
 		);
 
 		$model = $this->modelClass;
