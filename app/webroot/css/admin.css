@@ -29,3 +29,7 @@ table.admin-index {
 	padding: 8px;
 	font-size: 12px;
 }
+
+h2,h3{
+	text-align:center;
+}

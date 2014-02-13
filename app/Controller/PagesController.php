@@ -85,4 +85,51 @@ class PagesController extends AppController {
 		}
 	}
 
+	public function admin_upload_billboard() {
+
+
+		$subtitle = 'Agregando nueva cartelera.';
+		$dir = WWW_ROOT . 'files' . DS . 'carteleras' . DS . date('Y');
+		$destination = $dir . DS .
+				'cartelera_de_' . strtolower(__((date('F')))) . '_' . date('Y') . '.pdf';
+		$permissions = 0777;
+
+		if (!file_exists($dir) &&
+				!mkdir($dir, $permissions)) {
+			throw new InternalErrorException;
+		}
+
+		if (file_exists($destination)) {
+			$subtitle = 'La cartelera del mes de '
+					. __(date('F')) . ' del año ' . date('Y') . ' ya existe. Si subes una carteñera se guardara'
+					. ' como la del mes de ' . __(date('F', mktime(0, 0, 0, date('m') + 1, 1, 2014)))
+					. ' del año ' . date('Y',mktime(0, 0, 0, 1, 1, date('Y') + 1));
+		}
+
+		$h = function($f, $g) {
+			$this->Page->successUploadingBillboard($f, $g);
+		};
+
+		if ($this->request->is('post')) {
+
+			$this->UploadedFileManager = $this->Components->load('UploadedFileManager');
+			$flash = $this->UploadedFileManager->manages(
+					array($this->request->data['cartelera'])
+					, function($f, $g) {
+				return $this->Page->successUploadingBillboard($f, $g);
+			}
+					, function($a) {
+				return $this->Page->generateDestinationUploadedBillboard($a);
+			}
+					, array($destination));
+			$this->Session->setFlash(__($flash));
+		}
+
+		$files = scandir($dir);
+		unset($files[0]);
+		unset($files[1]);
+		$this->set('files', $files);
+		$this->set('subtitle', $subtitle);
+	}
+
 }
