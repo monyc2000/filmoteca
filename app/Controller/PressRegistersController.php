@@ -24,6 +24,7 @@ class PressRegistersController extends AppController {
 //						->from('victor.aguilar@yahoo.com.mx')
 //						->send();
 //				$this->Session->setFlash(__('Gracias por registrarce.'));
+				$this->Session->setFlash(__('Registrado.'));
 				$this->request->data = null;
 			} else {
 				$this->Session->setFlash(__('No se puedo realizar el registro.'));

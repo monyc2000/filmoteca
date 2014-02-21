@@ -101,14 +101,9 @@ class PagesController extends AppController {
 
 		if (file_exists($destination)) {
 			$subtitle = 'La cartelera del mes de '
-					. __(date('F')) . ' del año ' . date('Y') . ' ya existe. Si subes una carteñera se guardara'
-					. ' como la del mes de ' . __(date('F', mktime(0, 0, 0, date('m') + 1, 1, 2014)))
-					. ' del año ' . date('Y',mktime(0, 0, 0, 1, 1, date('Y') + 1));
+					. __(date('F')) . ' del año ' . date('Y') . ' ya existe.'
+					. ' Si en estos momentos subes la cartelera, se actualizara.';
 		}
-
-		$h = function($f, $g) {
-			$this->Page->successUploadingBillboard($f, $g);
-		};
 
 		if ($this->request->is('post')) {
 
