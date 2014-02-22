@@ -20,9 +20,13 @@ if (!isset($extraClass)) {
 				'controller' => strtolower($model) . 's',
 				'action' => 'detail',
 				$item[$model]['id']);
-			echo $this->Html->image($imageUrl, array('alt' => 'Detalles'));
+			if (file_exists($imageUrl)) {
+				echo $this->Html->image($imageUrl, array('alt' => 'Detalles'));
+			}else{
+				echo $this->Html->image('no-photo.jpg', array('alt' => 'Detalles'));
+			}
 			echo $this->Html->link(
-					$item[$model][$fieldTitle],$detailUrl, array(
+					$item[$model][$fieldTitle], $detailUrl, array(
 				'class' => 'fancybox.ajax slayer shop',
 				'escape' => false))
 			?>
@@ -32,7 +36,7 @@ if (!isset($extraClass)) {
 			<?php
 			echo $this->Html->link(
 					'Comprar', $cartUrl, array(
-				'class' => 'buy',
+				'class' => 'buy btn btn-success',
 				'alt' => 'comprar'
 			));
 			?>

@@ -13,7 +13,7 @@ $(function(){
 function ajaxCopyContents() {
 	$('.copy-contents').off();
 	$('.copy-contents').zclip({
-		path: '/document_manager/swf/ZeroClipboard.swf',
+		path: 'document_manager/swf/ZeroClipboard.swf',
 		copy: function(){
 			return $(this).attr('href');
 		}
