@@ -4,7 +4,7 @@ class ExhibitionsController extends AppController {
 
 	public $scaffold = 'admin';
 
-	public function add() {
+	public function admin_add() {
 
 		if ($this->request->is('post')) {
 			if ($this->Exhibition->saveAssociated($this->request->data)) {
