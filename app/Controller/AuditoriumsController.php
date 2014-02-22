@@ -2,8 +2,6 @@
 
 class AuditoriumsController extends AppController {
 
-	public $scaffold = 'admin';
-
 	public function index() {
 		$menu = array();
 		$auditoriums = array();
@@ -78,7 +76,7 @@ class AuditoriumsController extends AppController {
 		}
 	}
 
-	public function add() {
+	public function admin_add() {
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
 
@@ -108,7 +106,7 @@ class AuditoriumsController extends AppController {
 		
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 
 		if (!$id) {
 			throw new NotFoundException(__('Sala Invalida'));
