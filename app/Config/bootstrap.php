@@ -71,6 +71,8 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
+ CakePlugin::load('DocumentManager',array('bootstrap' => true));
+
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:
  *
