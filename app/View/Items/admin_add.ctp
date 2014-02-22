@@ -1,6 +1,6 @@
+<?php $this->Html->addCrumb('Admin artículos', '/admin/items')?>
 <?php
 $this->Html->script('libs/jquery.validate.min',array('inline'=>false));
-$this->Html->css('admin',null,array('inline'=>false));
 $this->Html->script('ItemsAdd', array('inline' => false));
 $this->Html->script('hideFlash', array('inline' => false));
 
@@ -38,5 +38,6 @@ echo $this->Form->input('Item.shop_category_id', array('selected' => 1,'label' =
 	</div>
 </div>
 <?php
-echo $this->Form->end('Agregar');
+echo $this->Form->submit('Agregar', array('class'=>'btn btn-default'));
+echo $this->Form->end();
 ?>

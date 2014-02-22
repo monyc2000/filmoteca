@@ -32,7 +32,11 @@ $this->Html->script(array('libs/fancybox/jquery.fancybox',
 	<ul class="items" id="items">
 		<?php foreach ($films as $v): ?>
 			<li class="item <?php echo $v['classes'] ?>">
-				<?php echo $this->Html->image('films/thumbnail_' . $v['film_id'] . '.jpg') ?>
+				<?php if (file_exists('/img/' . 'films/thumbnail_' . $v['film_id'] . '.jpg')):?>
+					<?php echo $this->Html->image('films/thumbnail_' . $v['film_id'] . '.jpg') ?>
+				<?php else:?>
+					<?php echo $this->Html->image('no-photo.jpg') ?>
+				<?php endif?>
 				<a class="slayer" href="<?php echo Router::url(array('controller' => 'exhibitions', 'action' => 'detail', $v['exhibition_id'])) ?>">
 					<h2 class="title"><?php echo $v['film_titulo'] ?></h2>
 				</a>

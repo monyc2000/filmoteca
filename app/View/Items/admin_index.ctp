@@ -1,35 +1,5 @@
 <?php $this->extend('/Commons/admin_index');?>
-<?php $this->start('head')?>
-<h2>Visualizando <?php echo $category ?></h2>
-<div class="column"><?php
-	echo $this->Html->link(
-			'Agragar artículo', array(
-		'action' => 'add'))
-	?>
-</div>
-<div class="column">
-	<h4>Visualizar:</h4>
-	<ul>
-		<li><?php
-			echo $this->Html->link(
-					'Libros', array('action' => 'index', 'Book'));
-			?>
-		</li>
-		<li><?php
-			echo $this->Html->link(
-					'Películas', array('action' => 'index', 'Film'))
-			?>
-		</li>
-		<li><?php
-			echo $this->Html->link(
-					'Souvenirs', array('action' => 'index', 'Souvenir'))
-			?>
-		</li>
-	</ul>
-</div>
-<div style="clear:left"></div>
-<?php $this->end()?>
-
+<?php $this->assign('subtitle','Administración de Artículos');?>
 <?php $this->start('table')?>
 <table class="admin-index">
 	<tr>

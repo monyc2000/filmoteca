@@ -31,8 +31,14 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
-	public function compact($data ,$model) {
+	public function compact($data, $model) {
 		return $data;
+	}
+
+	public function getColumnsName(array $blacklist = array()) {
+		return array_diff(
+				array_keys($this->schema())
+				, $blacklist);
 	}
 
 }

@@ -2,8 +2,6 @@
 
 class ExhibitionsController extends AppController {
 
-	public $scaffold = 'admin';
-
 	public function admin_add() {
 
 		if ($this->request->is('post')) {
@@ -22,6 +20,17 @@ class ExhibitionsController extends AppController {
 					'fields' => array('id', 'nombre'),
 					'order' => array('SpecialExhibition.nombre ASC'),
 		)));
+	}
+	
+	public function admin_index(){
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 5
+		);
+		
+		$this->set('data',$this->Paginator->paginate('Film'));
+		$this->set('titles', $this->Exhibition->getColumnsName());
+		$this->set('model', 'Film');
 	}
 
 	public function index() {

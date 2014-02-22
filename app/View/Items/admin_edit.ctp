@@ -1,3 +1,4 @@
+<?php $this->Html->addCrumb('Admin artículos', '/admin/items')?>
 <h2>Editar Artículo</h2>
 <?php
 
@@ -21,5 +22,6 @@ echo $this->Form->input('Item.existencias');
 	</div>
 </div>
 <?php
-echo $this->Form->end('Editar');
+echo $this->Form->submit('Editar',array('class'=> 'btn btn-default'));
+echo $this->Form->end();
 ?>

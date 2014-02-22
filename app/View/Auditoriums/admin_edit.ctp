@@ -1,4 +1,4 @@
-
+<?php $this->Html->addCrumb('Admin Salas', '/admin/auditoriums/');?>
 <h1>Editar Sala</h1>
 <?php
 echo $this->Form->create(
@@ -19,7 +19,7 @@ echo $this->Form->inputs(
 				'type' => 'hidden'
 	)));
 // No logro hacer que este código funcione como quisiera.
-//echo $this->Form->inptut('zone',
+//echo $this->Form->input('zone',
 //		array(
 //			'label' => '¿Pertenece a alguna otra sala?',
 //			'empty' => 'No, no pertenece a ninguna sala.'

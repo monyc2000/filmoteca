@@ -10,26 +10,6 @@ table.admin-index {
 	margin: 15px 0px;
 }
 
-.column{
-	float:left;
-	margin-left: 20px;
-	padding: 5px;
-}
-
-.next{
-	margin-left: 20px;
-}
-
-.prev{
-	margin-right: 20px;
-}
-
-.submit-button{
-	border: solid thin purple;
-	padding: 8px;
-	font-size: 12px;
-}
-
 h2,h3{
 	text-align:center;
 }

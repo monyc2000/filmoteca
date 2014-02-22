@@ -1,3 +1,16 @@
+<?php
+$css = array(
+	'jquery-ui-1.10.3.min',
+	'bootstrap-theme.min',
+	'bootstrap.min',
+	'filmoteca.css',
+	'filmoteca-mediaqueries');
+$js = array(
+	'libs/jquery-1.9.1.min',
+	'libs/jquery-ui-1.10.0.min',
+	'libs/bootstrap.min'
+)
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -5,13 +18,8 @@
 		<?php
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->Html->css(
-				array(
-					'jquery-ui-1.10.3.min',
-					'filmoteca.css',
-					'filmoteca-mediaqueries'));
-		echo $this->Html->script('libs/jquery-1.9.1.min');
-		echo $this->Html->script('libs/jquery-ui-1.10.0.min');
+		echo $this->Html->css($css);
+		echo $this->Html->script($js);
 		if (isset($isHome) && $isHome) {
 			echo $this->Html->script('libs/jquery.ui.datepicker-es');
 		}

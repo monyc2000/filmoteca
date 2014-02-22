@@ -1,7 +1,8 @@
 <?php
 $this->Html->script('hideFlash', array('inline' => false));
+$this->Html->addCrumb('Admin Salas', '/admin/auditoriums/');
 ?>
-<h1>Agregar nueva Sala</h1>
+<h2>Agregar nueva Sala</h2>
 <?php
 echo $this->Form->create(
 		'Auditorium', array('inputDefaults' => array('div' => 'field-input'),
@@ -23,5 +24,5 @@ echo $this->Form->input('zone', array(
 ));
 
 echo $this->element('form-to-upload-image', array('model' => 'Auditorium'));
-
-echo $this->Form->end("Guardar");
+echo $this->Form->submit('Agregar', array('class'=>'btn btn-default'));
+echo $this->Form->end();

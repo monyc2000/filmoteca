@@ -1,3 +1,4 @@
+<?php $this->Html->addCrumb('Admin Programación', '/admin/exhibitions')?>
 <h2>Agregar Exhibición</h2>
 <?php
 $this->Html->script('ExhibitionsAdd', array('inline' => false));

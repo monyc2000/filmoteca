@@ -102,8 +102,17 @@ class AuditoriumsController extends AppController {
 		)));
 	}
 
-	public function delete() {
-		
+	public function admin_delete($id = null) {
+
+		if (empty($id)) {
+			throw new NotFoundException(__('La sala no existe'));
+		}
+
+		$result = $this->Auditorium->delete($id);
+
+		$message = ( $result) ? __('Sala borrada.') : __('No se puedo borrar la sala.');
+		$this->Session->setFlash($message);
+		$this->render('admin_index');
 	}
 
 	public function admin_edit($id = null) {
@@ -119,7 +128,7 @@ class AuditoriumsController extends AppController {
 		}
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
-		$message = 'No se pudo actualizar la sala.';
+		$message = __('No se pudo actualizar la sala.');
 
 		if ($this->request->is(array('post', 'put'))) {
 
@@ -130,10 +139,10 @@ class AuditoriumsController extends AppController {
 				if (!is_bool($tmpMess) && $tmpMess) {
 					$message .= $tmpMess;
 				} else {
-					$message = 'Sala actualizada.';
+					$message = __('Sala actualizada.');
 				}
 			}
-			$this->Session->setFlash(__($message));
+			$this->Session->setFlash($message);
 		}
 
 		$this->set('zones', $this->Auditorium->find('list', array(
@@ -144,6 +153,22 @@ class AuditoriumsController extends AppController {
 		if (!$this->request->data) {
 			$this->request->data = $auditorium;
 		}
+	}
+
+	public function admin_index() {
+
+		$fields = $this->Auditorium->getColumnsName(array('zone'));
+
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 8,
+			'recursive' => 1,
+			'fields' => $this->Auditorium->getColumnsName(
+					array('zone'))
+		);
+		$this->set('titles', $fields);
+		$this->set('data', $this->Paginator->paginate('Auditorium'));
+		$this->set('model', 'Auditorium');
 	}
 
 }

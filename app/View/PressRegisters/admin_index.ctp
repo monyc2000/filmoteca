@@ -1,7 +1,7 @@
 <?php $this->extend('/Commons/admin_index'); ?>
 
 <?php $this->start('head') ?>
-<h2>Administracion de Prensa</h2>
+<h2>Administración de Prensa</h2>
 <div class="controls">
 	<?php
 	echo $this->Form->create(false);
@@ -31,9 +31,10 @@
 		'maxYear' => 2014,
 		'type' => 'date',
 		'name' => 'year',
-		'selected' =>  '2014-01-01 00:00:00',
+		'selected' => '2014-01-01 00:00:00',
 	));
-	echo $this->Form->end(array('label'=> 'Buscar','class' => 'submit-button'));
+	echo $this->Form->submit('Buscar', array('class' => 'btn btn-default'));
+	echo $this->Form->end();
 	?>
 </div>
 <?php $this->end(); ?>

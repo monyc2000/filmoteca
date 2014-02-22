@@ -28,4 +28,5 @@ echo $this->Form->create('PressRegister', $formOptions);
 </fieldset>
 <?php
 echo $this->Form->inputs($fields, $blackList);
-echo $this->Form->end('Enviar datos');
+echo $this->Form->submit('Enviar datos',array('class'=> 'btn btn-default'));
+echo $this->Form->end();

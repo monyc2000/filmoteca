@@ -21,6 +21,10 @@ body{
     font-family: "Helvetica Neue";
 }
 
+h2, h3{
+	text-align:center;
+}
+
 .wrapper{
     width: 100%;
     max-width: 1024px;
@@ -130,6 +134,7 @@ footer{
     background-color: #973397;
     color: white;
     padding: 10px;
+	margin-top: 20px;
 
 }
 
@@ -196,6 +201,7 @@ footer .fiaf .definicion{
     margin-bottom: 10px;
     padding: 5px 10px;
     width: 100%;
+	height: 30px;
     background-color: #c0bebd;
 	background: -moz-linear-gradient(#c0bebd,#fff);
 }
@@ -258,15 +264,16 @@ footer .fiaf .definicion{
     color: white;
 }
 
-.main-menu > ul{
+.main-menu  ul{
     width: 100%;
+	margin: 0px;
 }
 
-.main-menu > ul > li{
+.main-menu  ul > li{
     position: relative;
 }
 
-.main-menu > ul > li > ul{
+.main-menu ul > li > ul{
     width: 100%;
     display:none;
     position: absolute;
@@ -274,12 +281,11 @@ footer .fiaf .definicion{
     z-index: 2;
 }
 
-.main-menu > ul > li > ul > li{
+.main-menu ul > li > ul > li{
     width: 100%;
 	border: none;
     border-bottom: 1px solid #14374b;
     background-image: none;
-	opacity: 0.8; 
 	background: #487690;
 	/*    background: -moz-linear-gradient(#1b4c66,#2c7da9);
 		background: -webkit-linear-gradient(#1b4c66,#2c7da9);
@@ -288,7 +294,7 @@ footer .fiaf .definicion{
 		background: linear-gradient(#1b4c66,#2c7da9);*/
 }
 
-.main-menu > ul > li:hover ul{
+.main-menu ul > li:hover ul{
     display: block;
 
 }
@@ -394,6 +400,7 @@ footer .fiaf .definicion{
     padding: 10px;
     border: solid thin black;
     cursor: pointer;
+	color: black;
 }
 
 .filters-menu > ul > li span:hover,

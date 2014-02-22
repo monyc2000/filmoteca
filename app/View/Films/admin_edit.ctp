@@ -1,3 +1,4 @@
+<?php $this->Html->addCrumb('Admin Films', '/admin/films')?>
 <?php
 $this->Html->script('libs/jquery.validate.min', array('inline' => false));
 $this->Html->script('FilmsAdd', array('inline' => false));
@@ -17,5 +18,6 @@ $formOptions = array(
 echo $this->Form->create('Film', $formOptions);
 echo $this->Form->inputs($filmFields, $filmBlackList);
 echo $this->element('form-to-upload-image', array('model'=>'Film','edit'=> true));
-echo $this->Form->end('Actualizar');
+echo $this->Form->submit('Actualizar',array('class'=> 'btn btn-default'));
+echo $this->Form->end();
 ?>

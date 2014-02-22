@@ -40,7 +40,11 @@ $this->Html->css(
     <ul class="items" id="items">
 		<?php foreach ($auditoriums as $auditorium): ?>
 			<li class="item <?php echo $auditorium['classFilter'] ?>">
-				<?php echo $this->Html->image($auditorium['imageUrl']); ?>
+				<?php if (file_exists($auditorium['imageUrl'])): ?>
+					<?php echo $this->Html->image($auditorium['imageUrl']); ?>
+				<?php else: ?>
+					<?php echo $this->Html->image('no-photo.jpg'); ?>
+				<?php endif ?>
 				<?php
 				$url = Router::url(array(
 							'controller' => 'auditoriums',
