@@ -1,11 +1,10 @@
 <?php
-$this->Html->addCrumb('Salas', '/auditoriums');
-$this->Html->script(
-		array(
+$js = array(
 	'libs/fancybox/jquery.fancybox.js',
-	'my_plugins/billboardWithFilters',
-	'my_plugins/hideshowSubmenus',
-	'Auditoriums'), array('inline' => false));
+	'my_plugins/filtersMenu',
+	'Auditoriums');
+$this->Html->addCrumb('Salas', '/auditoriums');
+$this->Html->script($js, array('inline' => false));
 $this->Html->css(
 		array('../js/libs/fancybox/jquery.fancybox.css')
 		, array('inline' => false));

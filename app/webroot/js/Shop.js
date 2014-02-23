@@ -2,7 +2,7 @@ if (typeof functions === 'undefined')
 	functions = new Array();
 functions.push(function() {
 
-	 $('#filters-menu').billboardWithFilters().hideshowSubmenus();
+	 $('#filters-menu').filtersMenu();
 
 	$('#items').find('a').fancybox({
 		maxWidth: 900

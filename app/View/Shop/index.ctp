@@ -1,13 +1,10 @@
 <?php
-$this->Html->script(
-		array(
+$js = array(
 	'libs/fancybox/jquery.fancybox',
-	'my_plugins/billboardWithFilters',
-	'my_plugins/hideshowSubmenus',
-	'Shop'), array('inline' => false));
-$this->Html->css(
-		array('../js/libs/fancybox/jquery.fancybox.css')
-		, array('inline' => false));
+	'my_plugins/filtersMenu',
+	'Shop');
+$this->Html->script($js, array('inline' => false));
+$this->Html->css('../js/libs/fancybox/jquery.fancybox.css',null, array('inline' => false));
 ?>
 <?php $this->start('shopping-cart'); ?>
 <div class="wrapper-cart">

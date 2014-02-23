@@ -1,11 +1,10 @@
 <?php
-$this->Html->addCrumb('Programación','exhibitions/index');
+$this->Html->addCrumb('Programación', 'exhibitions/index');
 $this->Html->css(
 		array('../js/libs/fancybox/jquery.fancybox.css')
 		, array('inline' => false));
 $this->Html->script(array('libs/fancybox/jquery.fancybox',
-	'my_plugins/billboardWithFilters',
-	'my_plugins/hideshowSubmenus',
+	'my_plugins/filtersMenu',
 	'Exhibitions.js'
 		), array('inline' => false));
 ?>
@@ -18,8 +17,12 @@ $this->Html->script(array('libs/fancybox/jquery.fancybox',
 				<ul>
 					<?php foreach ($val as $v): ?>
 						<?php $filter = strtolower(str_replace(' ', '_', $v)); ?>
-						<li><a data-filter="<?php echo $filter ?>"><?php echo $v ?></a></li>
-					<?php endforeach ?>
+						<li><a 
+								data-filter="<?php echo $filter ?>" 
+								data-category="<?php echo $key?>"><?php echo $v ?>
+							</a>
+						</li>
+						<?php endforeach ?>
 				</ul>
 			</li>
 		<?php endforeach ?>
@@ -32,11 +35,11 @@ $this->Html->script(array('libs/fancybox/jquery.fancybox',
 	<ul class="items" id="items">
 		<?php foreach ($films as $v): ?>
 			<li class="item <?php echo $v['classes'] ?>">
-				<?php if (file_exists('/img/' . 'films/thumbnail_' . $v['film_id'] . '.jpg')):?>
+				<?php if (file_exists('/img/' . 'films/thumbnail_' . $v['film_id'] . '.jpg')): ?>
 					<?php echo $this->Html->image('films/thumbnail_' . $v['film_id'] . '.jpg') ?>
-				<?php else:?>
+				<?php else: ?>
 					<?php echo $this->Html->image('no-photo.jpg') ?>
-				<?php endif?>
+				<?php endif ?>
 				<a class="slayer" href="<?php echo Router::url(array('controller' => 'exhibitions', 'action' => 'detail', $v['exhibition_id'])) ?>">
 					<h2 class="title"><?php echo $v['film_titulo'] ?></h2>
 				</a>

@@ -2,7 +2,7 @@ if (typeof functions === 'undefined')
     functions = new Array();
 
 functions.push(function() {
-    $('#filters-menu').billboardWithFilters().hideshowSubmenus();
+    $('#filters-menu').filtersMenu();
 
     var url = document.URL;
     var params = url.substring(
@@ -10,7 +10,7 @@ functions.push(function() {
             url.length);
     var filter = params.substring(7, params.length);
 
-    $('#filters-menu').billboardWithFilters('addFilter', filter);
+    $('#filters-menu').filtersMenu('addFilter', filter);
 
     $('#items').find('a').fancybox({
         type: 'ajax',

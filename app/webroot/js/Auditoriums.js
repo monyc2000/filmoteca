@@ -3,7 +3,7 @@ if (typeof functions === 'undefined')
 
 functions.push(function() {
 
-	$('#filters-menu').billboardWithFilters().hideshowSubmenus();
+	$('#filters-menu').filtersMenu();
 
 	$('#items').find('a').fancybox({
 		type: 'ajax',
