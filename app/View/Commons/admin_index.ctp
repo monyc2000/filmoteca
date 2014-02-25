@@ -58,7 +58,7 @@ $numbersOptions = array(
 			</li>
 		</ul>
 	</div>
-	
+
 	<div class="btn-group">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			Artículos
@@ -151,14 +151,36 @@ $numbersOptions = array(
 				?></li>
 		</ul>
 	</div>
+
+	<div class="btn-group">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			Cartelera
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li>
+				<?php
+				echo $this->Html->link(
+						'Agregar cartelera', '/admin/pages/upload_billboard');
+				?>
+			</li>
+			<li>
+				<?php
+				echo $this->Html->link(
+						'Ver carteleras', '/admin/pages/carteleras');
+				?>
+			</li>
+		</ul>
+	</div>
+
 </div>
 <br>
 
-<h2><?php echo $this->fetch('subtitle')?></h2>
+<h2><?php echo $this->fetch('subtitle') ?></h2>
 <?php echo $this->fetch('head'); ?>
 
 <ul class='pagination'>
-	<?php echo $this->Paginator->prev('<< Anterior', array('tag' => 'li'), null, array('escape' => false,'tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled prev')); ?>
+	<?php echo $this->Paginator->prev('<< Anterior', array('tag' => 'li'), null, array('escape' => false, 'tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled prev')); ?>
 	<?php echo $this->Paginator->numbers($numbersOptions); ?>
 	<?php echo $this->Paginator->next('Siguiente >>', array('tag' => 'li'), null, array('tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled next')); ?>
 </ul>
