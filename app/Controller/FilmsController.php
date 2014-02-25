@@ -145,7 +145,7 @@ class FilmsController extends AppController {
 		$titles[$index] = 'género';
 
 		$this->set('data', $data);
-		$this->set('titles', $titles);
+		$this->set('titles', array_push($titles, 'Miniatura'));
 		$this->set('model', $model);
 	}
 
