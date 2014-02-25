@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('Tienda', 'items/index');
+$this->Html->addCrumb('Tienda', '/shop');
 ?>
 <div class="details">
 	<h1 class="title"><?php echo $titulo ?></h1>
