@@ -21,8 +21,8 @@ echo $this->Form->input('Película', array(
 	'name' => 'data[Exhibition][film_id]',
 	'value' => -1,
 	'id' => 'film_id'));
-//echo $this->Form->input('Exhibition.auditorium_id'); // no funciona ¿porqué?
-echo $this->Form->input('Sala', array('options' => $auditoriums, 'name' => 'data[Exhibition][auditorium_id]'));
+echo $this->Form->input('Exhibition.auditorium_id');
+//echo $this->Form->input('Sala', array('options' => $auditoriums, 'name' => 'data[Exhibition][auditorium_id]'));
 ?>
 <h3>Horarios</h3>
 <?php
