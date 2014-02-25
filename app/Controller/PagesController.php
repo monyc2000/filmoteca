@@ -104,10 +104,12 @@ class PagesController extends AppController {
 					. __(date('F')) . ' del año ' . date('Y') . ' ya existe.'
 					. ' Si en estos momentos subes la cartelera, se actualizara.';
 		}
-
-		if ($this->request->is('post')) {
-
+		
+		if ($this->request->is('post') &&
+				$this->request->data['cartelera']['type'] == 'application/pdf') {
+			
 			$this->UploadedFileManager = $this->Components->load('UploadedFileManager');
+
 			$flash = $this->UploadedFileManager->manages(
 					array($this->request->data['cartelera'])
 					, function($f, $g) {
@@ -117,14 +119,29 @@ class PagesController extends AppController {
 				return $this->Page->generateDestinationUploadedBillboard($a);
 			}
 					, array($destination));
-			$this->Session->setFlash(__($flash));
-		}
 
+			$this->Session->setFlash($flash);
+		}
+	}
+	
+	public function admin_carteleras(){
+		
+		/** Codigo agregado para respetar el helper paginator de la pagna
+		 * de administración.
+		 */
+		$this->loadModel('Item');
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 5
+		);
+		$data = $this->Paginator->paginate('Item');
+		/************************************************************/
+
+		$dir = WWW_ROOT . 'files' . DS . 'carteleras' . DS . date('Y');
 		$files = scandir($dir);
 		unset($files[0]);
 		unset($files[1]);
 		$this->set('files', $files);
-		$this->set('subtitle', $subtitle);
 	}
 
 }
