@@ -13,3 +13,17 @@ table.admin-index {
 h2,h3{
 	text-align:center;
 }
+
+.admin-cell-thumbnail img{
+	width: 120px;
+}
+
+.admin-a-timetable{
+	border: solid purple 1px;
+	padding: 10px;
+	margin-bottom: 10px;
+	display:block;
+}
+.admin-a-timetable:nth-child(odd){
+	background-color: gray;
+}

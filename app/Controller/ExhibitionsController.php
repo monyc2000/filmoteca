@@ -7,6 +7,7 @@ class ExhibitionsController extends AppController {
 		if ($this->request->is('post')) {
 			if ($this->Exhibition->saveAssociated($this->request->data)) {
 				$this->Session->setFlash('Exhibición agregada.');
+				$this->request->data = null;
 			} else {
 				$this->Session->setFlash(__('No se pudo guardar la exhibición'
 								. '. Posiblemente el nombre de la película está mal.'));
@@ -21,16 +22,21 @@ class ExhibitionsController extends AppController {
 					'order' => array('SpecialExhibition.nombre ASC'),
 		)));
 	}
-	
-	public function admin_index(){
+
+	public function admin_index() {
 		$this->Paginator = $this->Components->load('Paginator');
 		$this->Paginator->settings = array(
-			'limit' => 5
+			'limit' => 5,
+			'fields' => array(
+				'Film.título',
+				'Auditorium.nombre',
+				'Exhibition.film_id'
+			)
 		);
-		
-		$this->set('data',$this->Paginator->paginate('Film'));
-		$this->set('titles', $this->Exhibition->getColumnsName());
-		$this->set('model', 'Film');
+
+		$this->set('data', $this->Paginator->paginate('Exhibition'));
+		$this->set('titles', array('Id', 'Título', 'Sala', 'Portada', 'Horarios'));
+		$this->set('model', 'Exhibition');
 	}
 
 	public function index() {
@@ -112,9 +118,7 @@ class ExhibitionsController extends AppController {
 			'year(Timetable.fecha) = ' => $date['year']
 		));
 
-		$this->set('time', mktime(0, 0, 0, $date['month'],
-								$date['day'],
-								$date['year']));
+		$this->set('time', mktime(0, 0, 0, $date['month'], $date['day'], $date['year']));
 		$this->set('films', $films);
 		$this->layout = 'ajax';
 	}
