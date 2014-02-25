@@ -1,7 +1,6 @@
 <?php $this->extend('/Commons/admin_index');?>
 <?php $this->assign('subtitle','Administración de Artículos');?>
 <?php $this->start('table')?>
-<table class="admin-index">
 	<tr>
 		<?php foreach ($titles as $val): ?>
 			<th><?php echo $this->Paginator->sort($val) ?></th>
@@ -37,5 +36,4 @@
 			</td>
 		</tr>
 	<?php endforeach; ?>
-</table>
 <?php $this->end()?>
