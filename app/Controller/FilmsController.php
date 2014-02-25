@@ -143,9 +143,10 @@ class FilmsController extends AppController {
 		$titles = array_keys($this->$model->schema());
 		$index = array_search('genre_id', $titles);
 		$titles[$index] = 'género';
-
+		array_push($titles, 'Miniatura');
+		
 		$this->set('data', $data);
-		$this->set('titles', array_push($titles, 'Miniatura'));
+		$this->set('titles', $titles);
 		$this->set('model', $model);
 	}
 
