@@ -5,17 +5,17 @@ class FilmsController extends AppController {
 	public function admin_add() {
 
 		$this->ImageUploader = $this->Components->load('ImageUploader');
-		$message = 'No se pudo guardar la película.';
+		$message = __('No se pudo guardar la película.');
 
 		if ($this->request->is('post')) {
 			if ($this->Film->saveAssociated($this->request->data)) {
 				$tmpMess = $this->ImageUploader->uploadThem('Film', $this->Film->id, $this->request->data);
 				$this->request->data = null; //reset formulario;$this->data = null; //reset formulario;
 
-				$message = "Película agregada. <br>" . (is_bool($tmpMess)) ? '' : $tmpMess;
+				$message = __("Película agregada.") ."<br>" . ((is_bool($tmpMess)) ? '' : $tmpMess);
 			}
 
-			$this->Session->setFlash(__($message));
+			$this->Session->setFlash($message);
 		}
 
 		$filmFields = $this->Film->getFieldInputs();
