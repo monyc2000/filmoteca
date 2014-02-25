@@ -14,7 +14,7 @@ $formOptions = array(
 echo $this->Form->create('Exhibition', $formOptions);
 echo $this->Form->input('Exhibition.film_id', array('type' => 'text', 
 	'label'=> 'Nombre de Pelicula',
-	'data-json' => Router::url(array('controller'=>'films','action'=>'list_films'))));
+	'data-json' => Router::url(array('controller'=>'films','action'=>'list_films', 'admin' => false))));
 echo $this->Form->input('Exhibition.special_exhibition_id',array('label'=> 'Tipo de Exhibición'));
 echo $this->Form->input('Película', array(
 	'type' => 'hidden',
