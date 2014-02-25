@@ -1,4 +1,4 @@
-<?php $this->Html->addCrumb('Admin Films', '/admin/films')?>
+<?php $this->Html->addCrumb('Admin Películas', '/admin/films')?>
 <?php
 $this->Html->script('libs/jquery.validate.min', array('inline' => false));
 $this->Html->script('FilmsAdd', array('inline' => false));
