@@ -105,8 +105,12 @@ class PagesController extends AppController {
 					. ' Si en estos momentos subes la cartelera, se actualizara.';
 		}
 		
-		if ($this->request->is('post') &&
-				$this->request->data['cartelera']['type'] == 'application/pdf') {
+		if ($this->request->is('post')) {
+			
+			if(	$this->request->data['cartelera']['type'] == 'application/pdf'){
+				$this->Session->setFlash(__('El formato de la cartelera debe ser PDF.'));
+				return;
+			}
 			
 			$this->UploadedFileManager = $this->Components->load('UploadedFileManager');
 
