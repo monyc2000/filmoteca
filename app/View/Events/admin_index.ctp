@@ -1,6 +1,6 @@
 <?php
 $this->extend('/Commons/admin_index');
-$this->assign('subtitle', 'Adminitración de Eventos');
+$this->assign('subtitle', 'Administración de Eventos');
 
 $this->start('table') ?>
 <tr>

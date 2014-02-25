@@ -12,16 +12,20 @@ class EventsController extends AppController {
 
 	public function admin_add() {
 
+		$this->ImageUploader = $this->Components->load('ImageUploader');
+		
 		if ($this->request->is('post')) {
 			if ($this->Event->save($this->request->data)) {
-				$this->Session->setFlash(__('Evento guardado.'));
+				$tmpMess = $this->ImageUploader->uploadThem('Event', $this->Event->id, $this->request->data);
+				$this->Session->setFlash(__('Evento guardado. ' . $tmpMess));
 			} else {
 				$this->Session->setFlash(__('Ocurrio un problema al guardar el evento.'));
 			}
+			
+			$this->request->data = null;
 		}
 
-		$fields = $this->Event->getColumnsName();
-
+		
 		$this->set('model', 'Event');
 		$this->set('fields', $this->Event->getFieldInputs());
 		$this->set('fieldsBlackList', array());
@@ -56,6 +60,42 @@ class EventsController extends AppController {
 		}
 		
 		$this->redirect('/admin/events/index');
+	}
+	
+	public function admin_edit($id = null) {
+
+		if (!$id) {
+			throw new NotFoundException(__('Evento invalido'));
+		}
+
+		$event = $this->Event->findById($id);
+
+		if (!$event) {
+			throw new NotFoundException(__('Evento invalido'));
+		}
+
+		$this->ImageUploader = $this->Components->load('ImageUploader');
+		$message = 'No se pudo actualizar la película.';
+
+
+		if ($this->request->is(array('post', 'put'))) {
+			$this->Event->id = $id;
+			if ($this->Event->save($this->request->data)) {
+				$tmpMess = $this->ImageUploader->uploadThem('Event', $this->Event->id, $this->request->data);
+
+				$message = 'Pelicula actualizada. <br>' . (is_bool($tmpMess)) ? '' : $tmpMess;
+			}
+			$this->Session->setFlash(__($message));
+		}
+
+
+		$this->set('model', 'Event');
+		$this->set('fields', $this->Event->getFieldInputs());
+		$this->set('fieldsBlackList', array());
+
+		if (empty($this->request->data)) {
+			$this->request->data = $event;
+		}
 	}
 
 }
