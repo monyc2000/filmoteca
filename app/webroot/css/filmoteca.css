@@ -577,3 +577,12 @@ table th{
 .total{
 	text-align: right;
 }
+
+
+/****************/
+/** Eventos     */
+/****************/
+
+.event-resource{
+	display: none;
+}

@@ -97,5 +97,15 @@ class EventsController extends AppController {
 			$this->request->data = $event;
 		}
 	}
+	
+	public function index($year = 2014){
+		$data = $this->Event->find('all',array(
+			'conditions' => array(
+				'year(Event.fecha_de_inicio)' => $year
+			)
+		));
+		
+		$this->set('data', $data);
+	}
 
 }
