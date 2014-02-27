@@ -32,4 +32,17 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	public function admin_add(){
+		$model = $this->modelClass;
+		if ($this->request->is('post')) {
+			if ($this->$model->saveAssociated($this->request->data)) {
+			$this->request->data = null;
+			$this->Session->setFlash(__('Agregadó'));
+			}
+		}
+		
+		$this->set('model',$model);
+		$this->set('fields', array_keys($this->$model->schema));
+		$this->set('fieldsBlackList');
+	}
 }
