@@ -1,6 +1,8 @@
 <?php
 
 class CourseName extends AppModel{
-	public $name = 'Course';
-	public $hasMany = 'Course';
+	public $name = 'CourseName';
+	public $hasMany = array('Course' => array(
+		'foreignKey' => 'nombre_del_curso_id'
+	));
 }

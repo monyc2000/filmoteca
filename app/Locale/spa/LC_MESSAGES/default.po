@@ -18,6 +18,10 @@ msgstr ""
 msgid "La sala no existe."
 msgstr ""
 
+#: Controller/AuditoriumsController.php:63;69
+msgid "Venue"
+msgstr "Sede"
+
 #: Controller/AuditoriumsController.php:116;122
 msgid "Sala Invalida"
 msgstr ""
