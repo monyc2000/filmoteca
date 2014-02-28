@@ -16,8 +16,8 @@ class EventsController extends AppController {
 		
 		if ($this->request->is('post')) {
 			if ($this->Event->save($this->request->data)) {
-				$tmpMess = $this->ImageUploader->uploadThem('Event', $this->Event->id, $this->request->data);
-				$this->Session->setFlash(__('Evento guardado. ' . $tmpMess));
+				$this->ImageUploader->uploadThem('Event', $this->Event->id, $this->request->data);
+				$this->Session->setFlash(__('Evento guardado.'));
 			} else {
 				$this->Session->setFlash(__('Ocurrio un problema al guardar el evento.'));
 			}
