@@ -173,68 +173,13 @@ $numbersOptions = array(
 		</ul>
 	</div>
 
-	<div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-			Cursos
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu">
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Agregar Curso', '/admin/courses/add');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Ver Curso', '/admin/courses/index');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Agregar Profesor', '/admin/professors/add');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Ver Profesores', '/admin/professors/index');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Agregar Nombre de Curso', '/admin/course_names/add');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Ver Nombres de Cursos', '/admin/course_names/index');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Agregar Sede', '/admin/venues/add');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Ver Sedes', '/admin/venues/index');
-				?>
-			</li>
-			<li>
-				<?php
-				echo $this->Html->link(
-						'Ver Estudiantes', '/admin/students/index');
-				?>
-			</li>
-		</ul>
-	</div>
+	<?php
+	echo $this->Html->link(
+			'Administrar Cursos'
+			, array('plugin'=>'courses','controller' => 'courses')
+			,array(
+				'class' => 'btn btn-default'));
+	?>
 
 </div>
 <br>

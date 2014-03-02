@@ -72,6 +72,7 @@ Inflector::rules('plural', array('irregular' => array('auditorium' => 'auditoriu
  */
 
  CakePlugin::load('DocumentManager',array('bootstrap' => true));
+  CakePlugin::load('Courses',array('bootstrap' => false));
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:
