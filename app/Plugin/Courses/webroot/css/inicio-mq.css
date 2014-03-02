@@ -1,0 +1,64 @@
+/* 
+    Document   : inicio-mq
+    Created on : Dec 5, 2013, 6:07:56 PM
+    Author     : victor
+    Description:
+        Consultas de estilo para pantallas no estandar. Unicamente afecta 
+		a la pagina de inicio.
+*/
+
+@media (max-width: 754px){
+
+	.col-sites-news{
+		width: 100%;
+	}
+
+	.wrapper-billboard{
+		width: 50%;
+	}
+
+	.row-others{
+		width: 50%;
+	}
+
+	.row-others .block-small{
+		width: 100%;
+	}
+
+	.row-others .c{
+		float: right;
+	}
+	
+	.presentation .controls{
+		position: static;
+	}
+
+/*	.presentation{
+		margin-bottom: 80px;
+	}
+
+	.presentation .controls{
+		bottom: -70px;
+	}*/
+}
+
+@media (max-width: 480px){ 
+/*	.presentation{
+		margin-bottom: 160px;
+	}
+	
+	.presentation .controls{
+		bottom: -150px;
+	}*/
+}
+
+
+@media (max-width: 450px){ 
+	.wrapper-billboard{
+		width: 100%;
+	}
+
+	.row-others{
+		width: 100%;
+	}
+}

@@ -1,0 +1,39 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-02-21 23:27+0000\n"
+"PO-Revision-Date: 2014-02-21 17:41-0600\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: View/Events/admin_index.ctp:9
+msgid "Gestion des documents"
+msgstr "Administrador de documentos"
+
+#: View/Events/admin_index.ctp:14
+msgid "Dossier: "
+msgstr "Carpeta"
+
+#: View/Events/admin_index.ctp:31
+msgid "Remonter dans l'arborescence"
+msgstr "Regresar a la carpeta superior"
+
+#: View/Events/admin_index.ctp:68;70
+msgid "Ajouter un fichier"
+msgstr "Subir archivo"
+
+#: View/Events/admin_index.ctp:76
+msgid "Description du fichier"
+msgstr "Descripción del archivo"
+
+#: View/Events/admin_index.ctp:77
+msgid "Mettre en ligne"
+msgstr "Subir"
