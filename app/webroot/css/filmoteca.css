@@ -1,0 +1,579 @@
+/* 
+    Document   : fimoteca
+    Created on : Oct 9, 2013, 7:54:08 PM
+    Author     : Victor Aguilar
+    Description:
+*/
+
+@font-face
+{
+    font-family: "Helvetica Neue";
+    /*src: url('imgs/HelveticaNeue.ttf');*/
+} 
+
+*{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+body{
+    font-family: "Helvetica Neue";
+}
+
+h2, h3{
+	text-align:center;
+}
+
+.wrapper{
+    width: 100%;
+    max-width: 1024px;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.body .left-column,
+.body .right-column,
+.body .center-column{
+    float:left;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /*	width: 33%;
+            min-width: 341px;*/
+    padding: 10px;
+}
+
+.body .left-column,
+.body .right-column{
+    width: 341px;
+}
+
+/***********/
+/* Comunes */
+/***********/
+
+.contact-menu:after,
+.main-menu > ul:after,
+.contact-menu:after,
+.items:after,
+.higher-links ul:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/**************/
+/* Encabezado */
+/**************/
+
+header{
+    width: 100%;
+}
+
+.higher-links ul{
+    padding: 10px;
+    list-style: none;
+}
+
+.higher-links li{
+    float: right;
+    margin-left: 10px;
+}
+.higher-links li a{
+    color: black;
+    text-decoration: none;
+	font-size:12px;
+}
+
+.banner-filmoteca{
+    background-color: #993399;
+    width: 100%;
+    height:100px;
+    background-size: 1024px 100px;
+    background-color: #993399;
+    background-image: url('imgs/background-header.jpg');
+    background-repeat: no-repeat;
+}
+
+.banner-filmoteca img.logo-unam{
+    float: left;
+    display:block;
+    height: 100px;
+}
+
+.banner-filmoteca img.logo-filmoteca{
+    float: right;
+    display: block;
+    height: 85px;
+}
+
+.banner-filmoteca .definicion{
+    display: inline;
+    height: 100%;
+    line-height: 100px;
+    color: white;
+    float: right;
+}
+
+.banner-filmoteca .unam{
+    float:left;
+}
+
+.banner-filmoteca .definicion span{
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+/*****************/
+/* Pie de Pagina */
+/*****************/
+footer{
+    background-color: #973397;
+    color: white;
+    padding: 10px;
+	margin-top: 20px;
+
+}
+
+footer:after{
+    content:'';
+    display: block;
+    clear:both;
+}
+
+footer .copyright{
+    width: 80%;
+    text-align: center;
+    float:left;
+    font-size: .65em;
+}
+
+footer .fiaf{
+    width: 20%;
+    float:right;
+}
+footer .fiaf > div{
+    float: left;
+}
+
+footer .fiaf .logo{
+    width: 50px;
+    height: 50px;
+    background-image: url('imgs/logofiaf.png');
+    background-size: 50px 50px;
+}
+
+footer .fiaf .definicion{
+    padding-left: 10px;
+    text-align: right;
+    font-size: .65em;
+}
+
+
+
+.contact-menu li{
+    list-style: none;
+    float: right;
+    margin-right: 20px;
+}
+
+/********/
+/* Menu */
+/********/
+.search{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: -60px;
+    right: 10px;
+    width: 320px;
+    padding: 10px;
+}
+
+.search input{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid thin #696868;
+    border-radius: 10px 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 100%;
+	height: 30px;
+    background-color: #c0bebd;
+	background: -moz-linear-gradient(#c0bebd,#fff);
+}
+
+.breadcrumbs{
+	position:absolute;
+	bottom: -40px;
+}
+
+.main-menu{
+    position: relative;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 60px;
+	background: #1b4c66;
+    background: -moz-linear-gradient(#29749b,#1b4c66);
+    background: -webkit-linear-gradient(#29749b,#1b4c66);
+    background: -o-linear-gradient(#29749b,#1b4c66);
+    background: -ms-linear-gradient(#29749b,#1b4c66);
+    background: linear-gradient(#29749b,#1b4c66);
+}
+
+.main-menu ul li{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;    
+	float: left;
+    height: 46px;    
+	width: 11.1%;
+	list-style: none;
+    line-height: 46px; 
+	border-left: 1px solid #14374b;
+    border-right: 1px solid #888;
+    color: #EEE;  
+	/*	background-image: url('imgs/button_menu.png');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;*/
+}
+
+.main-menu ul li:hover{
+	background: #1b4c66;
+	/*background-image: url('imgs/button_menu_over.png');*/
+
+}
+
+
+.main-menu ul li a{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    line-height: normal;
+    width: 100%;
+    font-size: .65em;
+	/* font-weight: bold;*/
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+.main-menu  ul{
+    width: 100%;
+	margin: 0px;
+}
+
+.main-menu  ul > li{
+    position: relative;
+}
+
+.main-menu ul > li > ul{
+    width: 100%;
+    display:none;
+    position: absolute;
+    top: 46px;
+    z-index: 2;
+}
+
+.main-menu ul > li > ul > li{
+    width: 100%;
+	border: none;
+    border-bottom: 1px solid #14374b;
+    background-image: none;
+	background: #487690;
+	/*    background: -moz-linear-gradient(#1b4c66,#2c7da9);
+		background: -webkit-linear-gradient(#1b4c66,#2c7da9);
+		background: -o-linear-gradient(#1b4c66,#2c7da9);
+		background: -ms-linear-gradient(#1b4c66,#2c7da9);
+		background: linear-gradient(#1b4c66,#2c7da9);*/
+}
+
+.main-menu ul > li:hover ul{
+    display: block;
+
+}
+
+/***************************************************/
+/* Objetos a filtrar (peliculas, articulos, salas) */
+/***************************************************/
+
+.wrapper-items{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 77%;
+    padding: 10px;
+    float: left;
+    margin-top: 10px;
+}
+
+.items{
+    list-style: none;
+}
+
+.items .item{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    width: 25%;
+    padding: 10px;
+    min-width: 140px;
+}
+
+.items .item img{
+    width: 100%;
+}
+
+.items .item .slayer{
+	text-decoration: none;
+    padding: 10px;
+    color: white;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+	top: 0px;
+    left: 0px;
+    display: none;
+    width: 100%;
+/*    height: 60px;*/
+    z-index: 1;
+    background-color: rgba(0,0,0,.7);	
+}
+
+.items .item .slayer h2{
+    font-size: 12pt;
+    color: white;
+    margin-left: 10px;
+}
+
+.items .item .slayer a{
+    position: absolute;
+    bottom: 30px;
+    margin-left: 10px;
+    color: white;
+}
+
+.items .item:hover{
+}
+
+.items .item:hover .slayer{
+    display: block;
+}
+
+/********/
+/* Menu */
+/********/
+
+.filters-menu{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 23%;
+    min-width: 100px;
+    float: left;
+    padding: 10px;
+}
+
+.filters-menu ul{
+    list-style: none;
+    margin-left: 0px;
+}
+
+.filters-menu ul li{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.filters-menu ul li a,
+.filters-menu ul li span{
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #1c94c4;;
+    padding: 10px;
+    border: solid thin black;
+    cursor: pointer;
+	color: black;
+}
+
+.filters-menu > ul > li span:hover,
+.filters-menu li a:hover{
+    background-color: black;
+    color: white;
+}
+
+
+.filters-menu li a.selected{
+    color: white;
+    background-color: purple;
+}
+
+/* Entrada padre*/
+.filters-menu > ul > li > span,
+.filters-menu > ul > li > a{
+    background-color: dodgerblue;
+    border: black thin solid;
+    padding: 10px;
+    display:block;
+    cursor: pointer;
+    font-size: smaller;
+}
+
+.without-results{
+    display: none;
+}
+
+/** Corrección del comprotamiento por
+defecto del efecto blind de jquery ui **/
+/**.filters-menu */
+.filters-menu .ui-effects-wrapper{
+    position: static !important;
+}
+
+/************************/
+/* Detalles de Pelicula */
+/************************/
+
+.details{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 30px;
+}
+.details h2{
+    text-align: center;
+}
+
+.details .cartel{
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.details .cartel img{
+    width: 100%;
+    display: block;
+}
+
+.details .trailer,
+.details .map{
+    position:relative;
+    width: 100%;
+    min-height: 100px;
+    max-height: 600px;
+}
+
+.details .trailer img,
+.details .map img{
+    width: 100%;
+}
+
+.details .wrapper-iframe{
+    position: absolute;
+    top:0px;
+    height: 100%;
+    width: 100%;
+}
+.details iframe{
+    width: 100%;
+    height: 100%;
+}
+
+.details video{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.pestaña-menu{
+    display: none;
+    cursor: pointer;
+    background-color:  dodgerblue;
+    padding: 10px;
+}
+
+.closed-button{
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+}
+
+/** Formularios **/
+.input,
+.textarea,
+.field-input,
+.file-upload{
+    padding: 10px;
+}
+
+.input input, .textarea textarea,
+.field-input input,
+.field-input textarea{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid thin purple;
+    width: 80%;
+}
+.input label, .textarea label,
+.field-input label,
+.file-upload label{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 20%;
+    display: inline-block;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.file-upload input{
+    border: none;
+}
+
+#cart,
+#cart .shopping{
+    display: none;
+}
+
+table{
+    border: solid thin purple;
+    border-collapse: collapse;
+}
+
+table td,
+table th{
+	border: solid thin purple;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.message{
+	font-size: 16px;
+	text-align: center;
+	color: green;
+	font-weight: bold;
+}
+
+/*****************/
+/** Calendar    **/
+/*****************/
+
+#calendar{
+    display:none;
+}
+/* Para no resaltar el día de hoy*/
+.ui-state-highlight{
+    background-color: #DFEFFC !important;
+	background-image: none !important;
+    border: 1px solid #CCCCCC !important;
+    color: #1C94C4 !important;
+}
+
+.total{
+	text-align: right;
+}

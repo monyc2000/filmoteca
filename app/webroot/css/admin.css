@@ -1,0 +1,29 @@
+/* 
+    Created on : Jan 13, 2014, 4:54:42 PM
+    Author     : victor
+*/
+label.error{
+    color: red;
+}
+
+table.admin-index {
+	margin: 15px 0px;
+}
+
+h2,h3{
+	text-align:center;
+}
+
+.admin-cell-thumbnail img{
+	width: 120px;
+}
+
+.admin-a-timetable{
+	border: solid purple 1px;
+	padding: 10px;
+	margin-bottom: 10px;
+	display:block;
+}
+.admin-a-timetable:nth-child(odd){
+	background-color: gray;
+}
