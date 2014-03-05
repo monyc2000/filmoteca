@@ -13,11 +13,10 @@
 			<td><?php echo $value ?></td>
 		<?php endforeach; ?>
 		<td>
-			<?php echo $this->Html->link('Editar', array('controller' => strtolower($model) . 's', 'action' => 'edit', $datum[$model]['id'])) ?>
+			<?php echo $this->Html->link('Editar', array( 'action' => 'edit', $datum[$model]['id'])) ?>
 			<br>
 			<?php
 			echo $this->Html->link('Borrar', array(
-				'controller' => $model . 's',
 				'action' => 'delete',
 				$datum[$model]['id']), array('title' => 'Borra el objeto de la base de datos.'), 'El registro sera borrado completamente de la base de datos. ¿Borrarlo?');
 			?>
@@ -47,13 +46,13 @@ $numbersOptions = array(
 			<li>
 				<?php
 				echo $this->Html->link(
-						'Agregar Curso', '/admin/courses/courses/add');
+						'Agregar Detalles de Curso', '/admin/courses/course_details/add');
 				?>
 			</li>
 			<li>
 				<?php
 				echo $this->Html->link(
-						'Ver Curso', '/admin/courses/courses/index');
+						'Ver Detalles de Curso', '/admin/courses/course_details/index');
 				?>
 			</li>
 			<li>
@@ -71,13 +70,13 @@ $numbersOptions = array(
 			<li>
 				<?php
 				echo $this->Html->link(
-						'Agregar Nombre de Curso', '/admin/courses/course_names/add');
+						'Agregar Curso', '/admin/courses/courses/add');
 				?>
 			</li>
 			<li>
 				<?php
 				echo $this->Html->link(
-						'Ver Nombres de Cursos', '/admin/courses/course_names/index');
+						'Ver Cursos', '/admin/courses/courses/index');
 				?>
 			</li>
 			<li>

@@ -50,3 +50,4 @@ app/[Cc]onfig/database.php
 ehthumbs.db
 Thumbs.db
 /nbproject/private/
+!/app/Plugin/Courses/db.sql
