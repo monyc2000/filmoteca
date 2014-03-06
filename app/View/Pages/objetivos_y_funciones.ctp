@@ -1,5 +1,3 @@
-
-<body>
 <h1>Objetivos y funciones</h1>
 <p>La Filmoteca de la UNAM es la institución encargada de localizar, adquirir, identificar, clasificar, restaurar, valorizar, conservar y difundir películas, y en general, todos aquellos objetos y documentos relacionados con la cinematografía.</p>
 
@@ -13,7 +11,3 @@
 <li>Realizar las investigaciones necesarias para un mayor conocimiento del cine en sus aspectos sociales, históricos, políticos, estéticos y técnicos. </li>
 <li>Procurar la formación de un público participante, preocupado por la problemática social, política y cultural de México y el resto del mundo, con discusiones críticas e ideológicas de definición ante el hecho cinematográfico, por medio de exhibiciones, cursos, exposiciones, investigaciones y publicaciones.</li>
 </ul> 
-
-
-
-</body>
