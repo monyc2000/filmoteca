@@ -97,6 +97,12 @@ $numbersOptions = array(
 						'Ver Estudiantes', '/admin/courses/students/index');
 				?>
 			</li>
+			<li>
+				<?php
+				echo $this->Html->link(
+						'Ver Estudiantes en Cursos', '/admin/course_student/index');
+				?>
+			</li>
 		</ul>
 	</div>
 
