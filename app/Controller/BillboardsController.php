@@ -71,4 +71,24 @@ class BillboardsController extends CMSController{
 
 		$this->redirect('index');
 	}
+
+	/**
+	  * Esta función debería ser llamada a travéz de ajax.
+	  */
+	public function subscribe(){
+
+		$model = $this->modelClass;
+
+		if($this->request->is('post')){
+			if( $this->{$model}->saveSubscriber($this->request->data['email']) ){
+				$this->set('message', __('Subscrito.'));
+				$this->layout = 'ajax';
+				$this->render('/Commons/ajax/success');
+			}else{
+				$this->set('message', __('El email ya existe.'));
+				$this->layout = 'ajax';
+				$this->render('/Commons/ajax/error');
+			}
+		}
+	}
 }

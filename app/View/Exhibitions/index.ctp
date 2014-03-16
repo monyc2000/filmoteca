@@ -1,13 +1,24 @@
 <?php
 $this->Html->addCrumb('Programación', 'exhibitions/index');
 $this->Html->css(
-		array('../js/libs/fancybox/jquery.fancybox.css')
-		, array('inline' => false));
+		array('../js/libs/fancybox/jquery.fancybox.css'),
+		array('inline' => false));
 $this->Html->script(array('libs/fancybox/jquery.fancybox',
 	'my_plugins/filtersMenu',
 	'Exhibitions.js'
 		), array('inline' => false));
 ?>
+
+<div class="subscription">
+	<form id="subscription-billboard">
+		<div class="input-group">
+			<label for="email">Email: </label>
+			<input type="email" class="email input" value="" placeholder="email" name="email">
+			<input type="submit" value="sucribirce" class="btn btn-default">
+		</div>
+	</form>
+</div>
+
 <div>Resultados: <span id="results">Todos</span></div>
 <div>Filtros: <span class="applied-filters" id="applied-filters"> </span></div>
 <div class="filters-menu" id="filters-menu">

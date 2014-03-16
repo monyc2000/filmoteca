@@ -90,4 +90,23 @@ class Billboard extends AppModel{
 
 		return $newData;
 	}
+
+	public function saveSubscriber($email){
+		try{
+			$this->query(sprintf('insert into subscribers (email) values (\'%s\')', $email));
+			return true;
+		}catch(Exception $e){
+			return false;	
+		}
+		
+	}
+
+	public function unsubscirbe($email){
+		try{
+			$this->query(sprintf('delete from subscribers where email = \'%s\'', $email));
+			return true;
+		}catch(Exception $e){
+			return false;
+		}
+	}
 }

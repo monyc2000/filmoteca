@@ -17,4 +17,26 @@ functions.push(function() {
         maxWidth: 900,
         minWidth: 250
     });
+
+    $('#subscription-billboard').on('submit',function(event){
+        event.preventDefault();
+
+        $this = $(this);
+
+        $.ajax({
+            url: '/billboards/subscribe',
+            data: {
+                email: $this.find('input.email').val()
+            },
+            type: 'post',
+            dataType: 'html',
+            success: function(html){
+                $this.append(html);
+            },
+            error:function(){
+                alert('Error de comunicación');
+            }
+        });
+
+    });
 });
