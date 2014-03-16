@@ -1,4 +1,4 @@
-<?php
+qq<?php
 /**
  * Requests collector.
  *

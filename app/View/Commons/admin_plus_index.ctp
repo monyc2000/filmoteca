@@ -1,39 +1,33 @@
-<?php $this->Html->css('admin', null, array('inline' => false)) ?>
+<?php 
+$this->Html->css('admin', null, array('inline' => false));
+$this->Html->script('hideFlash', array('inline' => false));
 
-<?php $this->startIfEmpty('table') ?>
-<tr>
-	<?php foreach ($titles as $val): ?>
-		<th><?php echo $this->Paginator->sort($val) ?></th>
-	<?php endforeach; ?>
-	<th>Acciones</th>
-</tr>
-<?php foreach ($data as $datum): ?>
-	<tr>
-		<?php foreach ($datum[$model] as $value): ?>
-			<td><?php echo $value ?></td>
-		<?php endforeach; ?>
-		<td>
-			<?php echo $this->Html->link('Editar', array('controller' => strtolower($model) . 's', 'action' => 'edit', $datum[$model]['id'])) ?>
-			<br>
-			<?php
-			echo $this->Html->link('Borrar', array(
-				'controller' => $model . 's',
-				'action' => 'delete',
-				$datum[$model]['id']), array('title' => 'Borra el objeto de la base de datos.'), 'El registro sera borrado completamente de la base de datos. ¿Borrarlo?');
-			?>
-			<br>
-			<?php echo $this->fetch('others_actions'); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-<?php $this->end(); ?>
-
-<?php
 $numbersOptions = array(
 	'tag' => 'li',
 	'separator' => '',
 	'currentClass' => 'active',
 	'currentTag' => 'a');
+
+$prevOptions = array(
+	'escape' => false, 
+	'tag' => 'li', 
+	'disabledTag' => 'a', 
+	'class' => 'disabled prev');
+
+$nextOptions = array(
+	'tag' => 'li', 
+	'disabledTag' => 'a', 
+	'class' => 'disabled next');
+
+
+?>
+
+<?php
+$this->start('action');
+	foreach($model->actions as $action ){
+		echo $this->element($action);
+	}
+$this->end();
 ?>
 
 <!-- Adminitrator menu -->
@@ -184,19 +178,37 @@ $numbersOptions = array(
 </div>
 <br>
 
-<h2><?php echo $this->fetch('subtitle') ?></h2>
-<?php echo $this->fetch('head'); ?>
+<h2><?php echo $subtitle?></h2>
 
 <ul class='pagination'>
-	<?php echo $this->Paginator->prev('<< Anterior', array('tag' => 'li'), null, array('escape' => false, 'tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled prev')); ?>
+	<?php echo $this->Paginator->prev('<< Anterior', array('tag' => 'li'), null, $prevOptions); ?>
 	<?php echo $this->Paginator->numbers($numbersOptions); ?>
-	<?php echo $this->Paginator->next('Siguiente >>', array('tag' => 'li'), null, array('tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled next')); ?>
+	<?php echo $this->Paginator->next('Siguiente >>', array('tag' => 'li'), null, $nextOptions); ?>
 </ul>
+
 <table class="admin-index">
-	<?php echo $this->fetch('table') ?>
+	<tr>
+		<?php foreach ($model->titles as $column_name => $title): ?>
+			<th><?php echo $this->Paginator->sort($column_name, $title) ?></th>
+		<?php endforeach; ?>
+		<th>Acciones</th>
+	</tr>
+	<?php foreach ($data as $datum): ?>
+		<tr>
+			<?php foreach ($datum[$modelName] as $value): ?>
+				<td><?php echo $value ?></td>
+			<?php endforeach; ?>
+			<td>
+				<?php foreach($model->actions as $action):?>
+					<?php echo $this->element($action, array('datum' => $datum[$modelName]))?>
+				<?php endforeach;?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
 </table>
+
 <ul class='pagination'>
-	<?php echo $this->Paginator->prev('<< Anterior', array('tag' => 'li'), null, array('tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled prev')); ?>
+	<?php echo $this->Paginator->prev('<< Anterior', array('tag' => 'li'), null, $prevOptions); ?>
 	<?php echo $this->Paginator->numbers($numbersOptions); ?>
-	<?php echo $this->Paginator->next('Siguiente >>', array('tag' => 'li'), null, array('tag' => 'li', 'disabledTag' => 'a', 'class' => 'disabled next')); ?>
+	<?php echo $this->Paginator->next('Siguiente >>', array('tag' => 'li'), null, $nextOptions); ?>
 </ul>

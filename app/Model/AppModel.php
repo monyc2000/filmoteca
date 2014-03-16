@@ -41,4 +41,12 @@ class AppModel extends Model {
 				, $blacklist);
 	}
 
+	/**
+	 * Esta función regresa un arreglo para ser imprimido
+	 * en una tabla.
+	 */
+	public function toTable(array $data = array()){
+		return $data;
+	}
+
 }
