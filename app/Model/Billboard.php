@@ -44,12 +44,9 @@ class Billboard extends AppModel{
 
 		$newName = 'cartelera_' . date('Y-m-d_H-i-s') . '.' . $ext;
 		$destination = WWW_ROOT . 'files' . DS . 'billboards' . DS . $newName;
-
-		if( !move_uploaded_file($file['tmp_name'], $destination)){
-			return false;
-		}
-
 		$this->data[$this->name]['src'] = '/files/billboards/' . $newName;
+		
+		return move_uploaded_file($file['tmp_name'], $destination);
 	}
 
 	public function beforeDelete($cascade = true){
@@ -58,12 +55,7 @@ class Billboard extends AppModel{
 		$len = strlen($data[$this->name]['src']);
 		$path = WWW_ROOT . substr($data[$this->name]['src'],1,$len);
 
-		if( file_exists($path) &&
-			!unlink($path)){
-			return false;
-		}
-
-		return true;
+		return ( !file_exists($path) || unlink($path));
 
 	}
 
