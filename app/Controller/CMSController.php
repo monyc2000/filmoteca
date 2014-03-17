@@ -53,7 +53,7 @@ class CMSController extends AppController{
 		}
 
 		$this->{$model}->id = $id;
-
+		
 		if($this->{$model}->delete($id)){
 			$this->Session->setFlash(
 					__('Borrado.'),

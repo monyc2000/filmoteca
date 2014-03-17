@@ -175,6 +175,26 @@ $this->end();
 			</li>
 		</ul>
 	</div>
+	<div class="btn-group">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			Medalla Filmoteca
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li>
+				<?php
+				echo $this->Html->link(
+						'Agregar Ganador', '/admin/filmoteca_medals/add');
+				?>
+			</li>
+			<li>
+				<?php
+				echo $this->Html->link(
+						'Ver Ganadores', '/admin/filmoteca_medals/index');
+				?>
+			</li>
+		</ul>
+	</div>
 
 	<?php
 	echo $this->Html->link(

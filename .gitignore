@@ -18,8 +18,9 @@ app/[Cc]onfig/database.php
 /app/webroot/img/items/*.png
 /app/webroot/img/souvenirs/*.png
 /app/webroot/img/portada_carrusel/*.png
-/app/webroot/files/billboards/*.*
-/app/webroot/files/catalogs/*.*
+/app/webroot/files/billboards/*.pdf
+/app/webroot/files/catalogs/*.pdf
+/app/webroot/img/filmoteca_medals/*.jpg
 
 ! /app/webroot/files/catalogs/empty
 # Temporaly files #
