@@ -221,4 +221,41 @@ class ExhibitionsController extends AppController {
 		return $newFilms;
 	}
 
+	/**
+	  * Esta función recibe 3 parametros a travez de post: Titulo, Director y año.
+	  *
+	  */
+	public function search(){
+
+		$model = $this->modelClass;
+		$conditions = array();
+
+		foreach($this->request->query as $param => $value ){
+			if( !empty($value)){
+				array_push($conditions, array($param . ' LIKE ' => '%' . $value . '%'));
+			}
+		}
+
+		$this->Paginator = $this->Components->load('Paginator');
+		$this->Paginator->settings = array(
+			'limit' => 5,
+			'fields' => array(
+				'Exhibition.id',
+				'Film.titulo',
+				'Film.director',
+				'Film.year'),
+			'conditions' => $conditions
+		);
+
+		$data = $this->Paginator->paginate($model);
+		
+		$this->set('data',$data);
+		$this->set('modelName', $model);
+		$this->set('actions', array('detail'));
+		$this->set('titles', array(
+			'titulo' => 'Título',
+			'director' => 'Director',
+			'year' => 'Año'));
+		
+	}
 }
