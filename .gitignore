@@ -18,7 +18,7 @@ app/[Cc]onfig/database.php
 /app/webroot/img/items/*.png
 /app/webroot/img/souvenirs/*.png
 /app/webroot/img/portada_carrusel/*.png
-/app/webroot/files/carteleras/*.*
+/app/webroot/files/billboards/*.*
 /app/webroot/files/catalogs/*.*
 
 ! /app/webroot/files/catalogs/empty

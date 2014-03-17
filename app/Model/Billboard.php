@@ -1,4 +1,5 @@
 <?php
+App::uses('CakeEmail', 'Network/Email');
 
 class Billboard extends AppModel{
 	public $name = 'Billboard';
@@ -108,5 +109,26 @@ class Billboard extends AppModel{
 		}catch(Exception $e){
 			return false;
 		}
+	}
+
+	public function sendEmails(array $mailsList = array(), $pdfLink, $issueLink){
+
+		$email = new CakeEmail();
+
+		$emails = array();
+
+		foreach($mailsList as $mail){			
+			array_push($emails, $mail['Subscriber']['email']);
+		}
+
+		$email->template('new-billboard', 'default')
+			->emailFormat('html')
+			->viewVars( 
+				array(
+					'pdfLink' => $pdfLink,
+					'issueLink' => $issueLink))
+			->to($emails)
+			->from('filmoteca@unam.mx')
+			->send();
 	}
 }

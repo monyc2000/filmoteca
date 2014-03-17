@@ -164,6 +164,15 @@ $this->end();
 						'Ver carteleras', '/admin/billboards/index');
 				?>
 			</li>
+			<li>
+				<?php
+				echo $this->Html->link(
+						'Enviar cartelera', 
+						'/admin/billboards/send',
+						array('title' => 'Enviar cartelera')
+						);
+				?>
+			</li>
 		</ul>
 	</div>
 
