@@ -2,7 +2,7 @@
 echo $this->Html->link(
 	'Ver detalles', 
 	array(
-		'admin' => false
+		'admin' => false,
 		'action' => 'detail',
 		$datum['id']),
 	array('title' => 'Ver detalles'));
