@@ -29,6 +29,8 @@ class FilmotecaMedal extends AppModel{
 
 	public $notes = "El formato de la imagen deber ser jpg o png.";
 
+	public $findMethods = array('years' =>  true);
+
 	public function __construct(){
 		$this->fields['fecha']['selected'] = date('Y-m-d') . ' 00:00:00';
 		$this->fields['fecha']['maxYear'] = date('Y');
@@ -97,4 +99,20 @@ class FilmotecaMedal extends AppModel{
 
 		return $newData;
 	}
+
+    protected function _findYears($state, $query, $results = array()) {
+        if ($state === 'before') {
+        	$query['recursive'] = -1;
+        	$query['fields'] = array('Year(fecha) as fecha');
+            $query['group'] = 'fecha';
+            return $query;
+        }else{
+        	//Compactamos el resultado para que sea una lista de años
+        	$newResult = array();
+        	foreach($results as $row){
+        		array_push($newResult, $row[0]['fecha']);
+        	}
+        	return $newResult;
+        }
+    }
 }
